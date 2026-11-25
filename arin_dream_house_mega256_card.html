@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Arin's Dream House Studio — 6 Rooms Interior Decorator!</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #3D2B24;
+    --ink-soft: #6B4F43;
+    --pink-pop: #FF6FA5;
+    --yellow-pop: #FDE047;
+    --mint-pop: #6EE7B7;
+    --sky-pop: #BAE6FD;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Fredoka', 'Nunito', sans-serif;
+    color: var(--ink);
+    background: linear-gradient(135deg, #FCE7F3 0%, #FEF9C3 50%, #E0F2FE 100%);
+    overflow: hidden;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: clamp(3px, 0.8vh, 12px) clamp(5px, 1vw, 16px);
+  }
+
+  .room-book {
+    width: 100%;
+    max-width: 1380px;
+    height: 100%;
+    max-height: 860px;
+    background: linear-gradient(180deg, #FFFDF8 0%, #FFF7FA 55%, #F0F9FF 100%);
+    border: clamp(2.5px, 0.35vw, 4px) solid var(--ink);
+    border-radius: clamp(16px, 2.2vw, 28px);
+    box-shadow: 0 clamp(4px, 0.7vh, 8px) 0 var(--ink), 0 14px 30px rgba(61, 43, 36, 0.16);
+    padding: clamp(5px, 0.9vh, 12px) clamp(7px, 1.2vw, 18px);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(4px, 0.75vh, 9px);
+  }
+
+  @media (orientation: portrait) and (max-width: 720px) {
+    html, body { overflow-y: auto; height: auto; }
+    body { align-items: flex-start; padding: 8px; }
+    .room-book { height: auto; max-height: none; overflow: visible; }
+  }
+
+  .header-wrapper {
+    position: relative;
+    z-index: 2;
+    border-radius: clamp(12px, 1.6vw, 20px);
+    border: clamp(2px, 0.28vw, 3px) solid var(--ink);
+    background: linear-gradient(90deg, #FBCFE8 0%, #FEF08A 50%, #BAE6FD 100%);
+    padding: clamp(3px, 0.6vh, 7px) clamp(8px, 1.2vw, 15px);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .header-bar {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .room-tag {
+    background: #FFFFFF;
+    border: 2px solid var(--ink);
+    box-shadow: 0 2px 0 var(--ink);
+    border-radius: 999px;
+    padding: clamp(2px, 0.4vh, 4px) clamp(7px, 1vw, 12px);
+    font-size: clamp(0.6rem, min(1.1vw, 1.95vh), 0.86rem);
+    font-weight: 700;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+  }
+
+  .puffy-title {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: clamp(0.82rem, min(2.05vw, 3.3vh), 1.58rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #FF6FA5;
+    white-space: nowrap;
+    text-shadow:
+      -1.5px -1.5px 0 var(--ink),
+       1.5px -1.5px 0 var(--ink),
+      -1.5px  1.5px 0 var(--ink),
+       1.5px  1.5px 0 var(--ink),
+       0px    2.5px 0 var(--ink);
+  }
+
+  .puffy-title span.gold { color: #FDE047; }
+  .puffy-title span.mint { color: #6EE7B7; }
+
+  .controls-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .sticker-btn {
+    background: #FFF3B0;
+    border: 2px solid var(--ink);
+    box-shadow: 0 2px 0 var(--ink);
+    border-radius: 999px;
+    padding: clamp(2px, 0.4vh, 4px) clamp(6px, 0.95vw, 11px);
+    font-family: inherit;
+    font-size: clamp(0.6rem, min(1.05vw, 1.85vh), 0.82rem);
+    font-weight: 700;
+    color: var(--ink);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform 0.1s;
+  }
+
+  .sticker-btn:active { transform: translateY(1px); }
+  .sticker-btn.pink { background: #FFD6E5; }
+  .sticker-btn.mint { background: #CCFBF1; }
+  .sticker-btn.sky { background: #BAE6FD; }
+
+  .two-pane {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(310px, 47%) 1fr;
+    gap: clamp(7px, 1.2vw, 15px);
+    align-items: stretch;
+  }
+
+  @media (orientation: portrait) and (max-width: 720px) {
+    .two-pane { grid-template-columns: 1fr; }
+    .header-bar { flex-wrap: wrap; justify-content: center; }
+  }
+
+  /* ================= LEFT PANE: ARIN'S LIVE ROOM STAGE ================= */
+  .left-pane {
+    background: linear-gradient(180deg, #FFFDF7 0%, #FFF5FA 100%);
+    border: clamp(2.5px, 0.35vw, 3.5px) solid var(--ink);
+    border-radius: clamp(16px, 2vw, 26px);
+    box-shadow: 0 4px 0 var(--ink);
+    padding: clamp(5px, 0.9vh, 11px) clamp(7px, 1vw, 13px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(3px, 0.65vh, 7px);
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .cloud-speech {
+    background: #FFFFFF;
+    border: 2px solid var(--ink);
+    box-shadow: 0 2px 0 #FBCFE8;
+    border-radius: 14px;
+    padding: clamp(3px, 0.6vh, 6px) clamp(6px, 0.9vw, 11px);
+    font-size: clamp(0.64rem, min(1.15vw, 2vh), 0.88rem);
+    font-weight: 700;
+    color: var(--ink);
+    text-align: center;
+    width: 100%;
+    flex-shrink: 0;
+    line-height: 1.2;
+  }
+
+  .cloud-speech.pop { animation: stickerPop 0.35s ease; }
+
+  @keyframes stickerPop {
+    0% { transform: scale(0.95); }
+    55% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+  }
+
+  .room-stage {
+    width: 100%;
+    flex: 1 1 auto;
+    min-height: 0;
+    background: #FFFDF7;
+    border: 3px solid var(--ink);
+    border-radius: clamp(16px, 2vw, 24px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .room-svg {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: visible;
+  }
+
+  .room-svg.bounce { animation: roomPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+  @keyframes roomPop {
+    0% { transform: scale(0.985); }
+    50% { transform: scale(1.015); }
+    100% { transform: scale(1); }
+  }
+
+  .glam-box {
+    width: 100%;
+    background: #FFFFFF;
+    border: 2px solid var(--ink);
+    border-radius: 13px;
+    padding: clamp(3px, 0.6vh, 6px) clamp(7px, 0.9vw, 11px);
+    flex-shrink: 0;
+  }
+
+  .glam-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: clamp(2px, 0.35vh, 4px);
+    font-size: clamp(0.62rem, min(1.08vw, 1.85vh), 0.84rem);
+    font-weight: 700;
+  }
+
+  .pct-pill {
+    background: #FF6FA5;
+    color: #FFFFFF;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    padding: 1px 8px;
+    font-size: clamp(0.58rem, min(0.98vw, 1.75vh), 0.76rem);
+    text-shadow: 0 1px 0 var(--ink);
+  }
+
+  .rainbow-track {
+    width: 100%;
+    height: clamp(9px, 1.7vh, 13px);
+    background: #F1F5F9;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .rainbow-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #FF6FA5 0%, #FDE047 35%, #6EE7B7 70%, #BAE6FD 100%);
+    border-right: 2px solid var(--ink);
+    border-radius: 999px;
+    transition: width 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* ================= RIGHT PANE: ROOM SELECTOR + 4 INTERIOR PALETTES ================= */
+  .right-pane {
+    min-height: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(5px, 0.8vh, 9px);
+  }
+
+  /* Top Room Type Strip (6 Rooms!) */
+  .room-selector-box {
+    background: #FFFFFF;
+    border: clamp(2.2px, 0.3vw, 3.2px) solid var(--ink);
+    border-radius: clamp(14px, 1.7vw, 20px);
+    box-shadow: 0 3.5px 0 var(--ink);
+    padding: clamp(4px, 0.7vh, 8px) clamp(6px, 0.95vw, 11px);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .cloud-tag {
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    padding: clamp(1px, 0.3vh, 2.5px) clamp(6px, 0.85vw, 10px);
+    font-size: clamp(0.56rem, min(1vw, 1.8vh), 0.76rem);
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    white-space: nowrap;
+  }
+
+  .ct-gold { background: #FDE68A; }
+  .ct-pink { background: #FBCFE8; }
+  .ct-mint { background: #A7F3D0; }
+  .ct-sky  { background: #BAE6FD; }
+  .ct-lav  { background: #DDD6FE; }
+
+  .room-tabs-8 {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: clamp(2.5px, 0.45vw, 5px);
+  }
+
+  @media (max-width: 720px) {
+    .room-tabs-6 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+
+  .room-tab-btn {
+    background: #FFFDF7;
+    border: 2px solid var(--ink);
+    border-radius: 12px;
+    box-shadow: 0 2px 0 var(--ink);
+    padding: clamp(2px, 0.45vh, 5px) 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    cursor: pointer;
+    min-width: 0;
+    transition: transform 0.1s;
+  }
+
+  .room-tab-btn:active { transform: translateY(1.5px); }
+
+  .room-tab-btn.active {
+    background: #FDE047;
+    box-shadow: 0 2px 0 var(--ink), 0 0 0 2px #FF6FA5;
+    transform: translateY(-1px);
+  }
+
+  .room-tab-art {
+    width: clamp(22px, min(3.1vw, 4.4vh), 34px);
+    height: clamp(22px, min(3.1vw, 4.4vh), 34px);
+  }
+
+  .room-tab-name {
+    font-size: clamp(0.48rem, min(0.82vw, 1.45vh), 0.68rem);
+    font-weight: 700;
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  /* 2x2 Interior Palettes for the Selected Room */
+  .palettes-2x2 {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: clamp(5px, 0.85vh, 10px) clamp(6px, 1vw, 12px);
+  }
+
+  @media (orientation: portrait) and (max-width: 720px) {
+    .palettes-2x2 {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      height: auto;
+    }
+  }
+
+  .palette-card {
+    background: #FFFFFF;
+    border: clamp(2.2px, 0.3vw, 3.2px) solid var(--ink);
+    border-radius: clamp(14px, 1.7vw, 20px);
+    box-shadow: 0 3.5px 0 var(--ink);
+    padding: clamp(4px, 0.7vh, 8px) clamp(6px, 0.9vw, 10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: clamp(2px, 0.45vh, 5px);
+    min-height: 0;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .palette-card.theme-pink { background: linear-gradient(180deg, #FFFFFF 0%, #FFF0F7 100%); }
+  .palette-card.theme-gold { background: linear-gradient(180deg, #FFFFFF 0%, #FFFBEB 100%); }
+  .palette-card.theme-mint { background: linear-gradient(180deg, #FFFFFF 0%, #ECFDF5 100%); }
+  .palette-card.theme-sky  { background: linear-gradient(180deg, #FFFFFF 0%, #EFF8FF 100%); }
+
+  .swatch-grid-8 {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: clamp(2.5px, 0.45vh, 5px) clamp(2.5px, 0.45vw, 6px);
+    flex: 1 1 auto;
+    min-height: 0;
+    align-items: stretch;
+  }
+
+  .swatch-btn {
+    background: #FFFFFF;
+    border: 1.9px solid var(--ink);
+    border-radius: clamp(10px, 1.2vw, 14px);
+    box-shadow: 0 2px 0 var(--ink);
+    padding: 2px 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    cursor: pointer;
+    min-width: 0;
+    min-height: 0;
+    transition: transform 0.1s, background 0.15s;
+  }
+
+  .swatch-btn:active { transform: translateY(1.5px); }
+
+  .swatch-btn.active {
+    background: #FFF3B0;
+    box-shadow: 0 2px 0 var(--ink), 0 0 0 2.2px #FF6FA5;
+    transform: translateY(-1px);
+  }
+
+  .swatch-art {
+    width: clamp(22px, min(3vw, 4.3vh), 34px);
+    height: clamp(22px, min(3vw, 4.3vh), 34px);
+    flex-shrink: 0;
+  }
+
+  .swatch-label {
+    font-size: clamp(0.5rem, min(0.86vw, 1.48vh), 0.7rem);
+    font-weight: 700;
+    color: var(--ink);
+    text-align: center;
+    line-height: 1.05;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  #fx-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 50;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="fx-canvas"></canvas>
+
+<div class="room-book">
+  <!-- Top Header -->
+  <div class="header-wrapper">
+    <div class="header-bar">
+      <div class="room-tag">🏡 Arin's Dream House</div>
+      <div class="puffy-title">
+        🛋️ <span>ARIN'S</span> <span class="gold">6-ROOM</span> <span class="mint">INTERIOR</span> ✨
+      </div>
+      <div class="controls-row">
+        <button class="sticker-btn mint" id="magic-room-btn">🪄 Cozy Magic!</button>
+        <button class="sticker-btn pink" id="clear-room-btn">🧹 Reset Room</button>
+        <button class="sticker-btn sky" id="save-html-btn">💾 Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2-Pane Split Body -->
+  <div class="two-pane">
+    <!-- Left Pane: Live Room Canvas -->
+    <div class="left-pane">
+      <div class="cloud-speech" id="speech-bubble">"Choose a room on the right and decorate every corner!" 🏡</div>
+
+      <div class="room-stage" id="room-tap" title="Tap room for sparkles!">
+        <svg id="room-svg" class="room-svg" viewBox="0 0 420 280" xmlns="http://www.w3.org/2000/svg">
+          <!-- Wall -->
+          <rect id="room-wall" x="0" y="0" width="420" height="196" fill="#FFF0F7"/>
+          <g id="wall-pattern-layer" opacity="0.55"></g>
+
+          <!-- Baseboard -->
+          <rect x="0" y="190" width="420" height="8" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.2"/>
+
+          <!-- Floor -->
+          <rect id="room-floor" x="0" y="198" width="420" height="82" fill="#FDE68A" stroke="#3D2B24" stroke-width="2.4"/>
+          <g id="floor-lines" stroke="#D97706" stroke-width="1.3" opacity="0.45">
+            <line x1="0" y1="224" x2="420" y2="224"/>
+            <line x1="0" y1="252" x2="420" y2="252"/>
+            <line x1="105" y1="198" x2="105" y2="280"/>
+            <line x1="210" y1="198" x2="210" y2="280"/>
+            <line x1="315" y1="198" x2="315" y2="280"/>
+          </g>
+
+          <!-- Rug Layer -->
+          <g id="room-rug-layer"></g>
+
+          <!-- Room Architecture / Window / Backdrop -->
+          <g id="room-arch-layer"></g>
+
+          <!-- Main Furniture Layer -->
+          <g id="room-furniture-layer"></g>
+
+          <!-- Secondary Furniture / Side Piece -->
+          <g id="room-side-layer"></g>
+
+          <!-- Cozy Decor / Lighting / Art Layer -->
+          <g id="room-decor-layer"></g>
+        </svg>
+      </div>
+
+      <div class="glam-box">
+        <div class="glam-top">
+          <span id="room-summary-label">🛏️ Bedroom · Ready to Style</span>
+          <span class="pct-pill" id="room-style-pill">0 / 4 Styled</span>
+        </div>
+        <div class="rainbow-track">
+          <div class="rainbow-fill" id="room-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Pane: 6 Room Types + 4 Room-Specific Palettes -->
+    <div class="right-pane">
+      <!-- Top Box: 6 Rooms -->
+      <div class="room-selector-box">
+        <div class="section-head">
+          <span class="cloud-tag ct-gold">🏠 1. Choose Room (8 Rooms · 256 Items!)</span>
+          <span id="room-hint" style="font-size:0.72rem;font-weight:700;color:#6B4F43;">Each room has custom furniture!</span>
+        </div>
+        <div class="room-tabs-8" id="room-tabs"></div>
+      </div>
+
+      <!-- Bottom 2x2 Palettes -->
+      <div class="palettes-2x2">
+        <div class="palette-card theme-pink">
+          <div class="card-head">
+            <span class="cloud-tag ct-pink">🎨 Walls & Floor</span>
+          </div>
+          <div class="swatch-grid-8" id="palette-surface"></div>
+        </div>
+
+        <div class="palette-card theme-gold">
+          <div class="card-head">
+            <span class="cloud-tag ct-gold" id="main-cat-title">🛏️ Main Furniture</span>
+          </div>
+          <div class="swatch-grid-8" id="palette-main"></div>
+        </div>
+
+        <div class="palette-card theme-mint">
+          <div class="card-head">
+            <span class="cloud-tag ct-mint" id="side-cat-title">🪑 Side Furniture</span>
+          </div>
+          <div class="swatch-grid-8" id="palette-side"></div>
+        </div>
+
+        <div class="palette-card theme-sky">
+          <div class="card-head">
+            <span class="cloud-tag ct-sky" id="decor-cat-title">✨ Room Decor</span>
+          </div>
+          <div class="swatch-grid-8" id="palette-decor"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const roomTypes = [
+    {
+      id: 'bedroom',
+      name: 'Bedroom',
+      tabArt: `<rect x="10" y="22" width="28" height="12" rx="4" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/><rect x="12" y="16" width="10" height="7" rx="2" fill="#FFFFFF" stroke="#3D2B24" stroke-width="1.8"/>`,
+      defaultWall: '#FFF0F7',
+      defaultFloor: '#FDE68A',
+      archSvg: `<g transform="translate(34, 28)">
+                  <rect x="0" y="0" width="84" height="92" rx="12" fill="#BAE6FD" stroke="#3D2B24" stroke-width="3.2"/>
+                  <line x1="42" y1="0" x2="42" y2="92" stroke="#3D2B24" stroke-width="2.8"/>
+                  <line x1="0" y1="46" x2="84" y2="46" stroke="#3D2B24" stroke-width="2.8"/>
+                  <path d="M -8 -6 L 16 -6 L 10 98 L -10 98 Z" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.4"/>
+                  <path d="M 92 -6 L 68 -6 L 74 98 L 94 98 Z" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.4"/>
+                </g>`,
+      mainTitle: '🛏️ Dream Beds (6)',
+      sideTitle: '🪞 Vanity & Desk (6)',
+      decorTitle: '🧸 Cozy Accents (6)',
+      surfaces: [
+        { id: 's_pink', label: 'Cotton Pink', wall: '#FFF0F7', dot: '#FF8FAB', floor: '#FDE68A', rug: '#FF8FAB', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFF0F7" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#FF8FAB"/>` },
+        { id: 's_sky', label: 'Cloud Blue', wall: '#E0F2FE', dot: '#38BDF8', floor: '#FEF3C7', rug: '#60A5FA', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#E0F2FE" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#38BDF8"/>` },
+        { id: 's_lilac', label: 'Lilac Dream', wall: '#F3E8FF', dot: '#A855F7', floor: '#FDE68A', rug: '#C084FC', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#F3E8FF" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#A855F7"/>` },
+        { id: 's_mint', label: 'Mint Breeze', wall: '#DCFCE7', dot: '#34D399', floor: '#FDBA74', rug: '#34D399', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#DCFCE7" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#34D399"/>` },
+        { id: 's_peach', label: 'Peach Glow', wall: '#FFEDD5', dot: '#FB923C', floor: '#FEF3C7', rug: '#FB923C', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFEDD5" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#FB923C"/>` },
+        { id: 's_butter', label: 'Lemon Cream', wall: '#FEF9C3', dot: '#FACC15', floor: '#FDBA74', rug: '#F472B6', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FEF9C3" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#FACC15"/>` }
+      ,
+        { id: 's_starry', label: 'Starry Night', pat: 'diamonds', rugShape: 'star', wall: '#E0E7FF', dot: '#FDE047', floor: '#FDE68A', rug: '#818CF8', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#E0E7FF" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#818CF8"/>` },
+        { id: 's_rose', label: 'Rose Striped', pat: 'stripes', rugShape: 'rect', wall: '#FFE4E6', dot: '#FB7185', floor: '#FDBA74', rug: '#FB7185', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFE4E6" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#FB7185"/>` }
+      ],
+      main: [
+        {
+          id: 'b_canopy', label: 'Canopy Bed',
+          art: `<rect x="10" y="22" width="28" height="12" rx="4" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/><path d="M 10 14 Q 24 8 38 14" fill="none" stroke="#FDE047" stroke-width="2.5"/>`,
+          svg: `<g transform="translate(230, 128)"><rect x="0" y="30" width="144" height="46" rx="10" fill="#FFF0F7" stroke="#3D2B24" stroke-width="3"/><rect x="0" y="4" width="14" height="72" rx="5" fill="#FF8FAB" stroke="#3D2B24" stroke-width="3"/><rect x="130" y="22" width="14" height="54" rx="5" fill="#FF8FAB" stroke="#3D2B24" stroke-width="3"/><rect x="18" y="22" width="38" height="14" rx="6" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.5"/><path d="M 12 44 Q 72 36 132 44 L 132 74 L 12 74 Z" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.8"/><path d="M -4 4 Q 72 -18 148 4" fill="none" stroke="#FDE047" stroke-width="5" stroke-linecap="round"/></g>`
+        },
+        {
+          id: 'b_bunny', label: 'Bunny Bed',
+          art: `<rect x="10" y="22" width="28" height="12" rx="4" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/><ellipse cx="18" cy="15" rx="3" ry="7" fill="#FFFFFF" stroke="#3D2B24" stroke-width="1.6"/><ellipse cx="30" cy="15" rx="3" ry="7" fill="#FFFFFF" stroke="#3D2B24" stroke-width="1.6"/>`,
+          svg: `<g transform="translate(232, 134)"><ellipse cx="22" cy="8" rx="9" ry="22" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.8"/><ellipse cx="46" cy="8" rx="9" ry="22" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.8"/><rect x="0" y="24" width="142" height="46" rx="12" fill="#FBCFE8" stroke="#3D2B24" stroke-width="3"/><path d="M 14 38 L 130 38 L 130 68 L 14 68 Z" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.6"/></g>`
+        },
+        {
+          id: 'b_cloud', label: 'Cloud Bed',
+          art: `<rect x="10" y="22" width="28" height="12" rx="6" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(230, 140)"><rect x="0" y="18" width="144" height="46" rx="16" fill="#BAE6FD" stroke="#3D2B24" stroke-width="3"/><rect x="16" y="12" width="38" height="14" rx="7" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.4"/><path d="M 14 32 L 132 32 L 132 62 L 14 62 Z" fill="#60A5FA" stroke="#3D2B24" stroke-width="2.6"/></g>`
+        },
+        {
+          id: 'b_sunny', label: 'Sunny Bed',
+          art: `<rect x="10" y="22" width="28" height="12" rx="4" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(230, 140)"><rect x="0" y="18" width="144" height="46" rx="12" fill="#FEF08A" stroke="#3D2B24" stroke-width="3"/><rect x="16" y="12" width="38" height="14" rx="7" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.4"/><path d="M 14 32 L 132 32 L 132 62 L 14 62 Z" fill="#FACC15" stroke="#3D2B24" stroke-width="2.6"/></g>`
+        },
+        {
+          id: 'b_bunk', label: 'Bunk Bed',
+          art: `<rect x="11" y="13" width="26" height="8" rx="3" fill="#A7F3D0" stroke="#3D2B24" stroke-width="1.8"/><rect x="11" y="26" width="26" height="8" rx="3" fill="#6EE7B7" stroke="#3D2B24" stroke-width="1.8"/>`,
+          svg: `<g transform="translate(232, 96)"><rect x="0" y="0" width="12" height="106" rx="4" fill="#34D399" stroke="#3D2B24" stroke-width="2.8"/><rect x="128" y="0" width="12" height="106" rx="4" fill="#34D399" stroke="#3D2B24" stroke-width="2.8"/><rect x="10" y="18" width="120" height="22" rx="6" fill="#A7F3D0" stroke="#3D2B24" stroke-width="2.6"/><rect x="10" y="66" width="120" height="26" rx="6" fill="#6EE7B7" stroke="#3D2B24" stroke-width="2.6"/><rect x="102" y="18" width="16" height="84" fill="#FDE047" stroke="#3D2B24" stroke-width="2.2"/></g>`
+        },
+        {
+          id: 'b_kitty', label: 'Kitty Bed',
+          art: `<rect x="10" y="22" width="28" height="12" rx="5" fill="#DDD6FE" stroke="#3D2B24" stroke-width="2"/><polygon points="14,22 12,13 21,20" fill="#C084FC"/>`,
+          svg: `<g transform="translate(230, 134)"><polygon points="14,24 10,2 32,20" fill="#DDD6FE" stroke="#3D2B24" stroke-width="2.8"/><polygon points="54,24 58,2 36,20" fill="#DDD6FE" stroke="#3D2B24" stroke-width="2.8"/><rect x="0" y="22" width="144" height="48" rx="14" fill="#EDE9FE" stroke="#3D2B24" stroke-width="3"/><path d="M 14 36 L 130 36 L 130 68 L 14 68 Z" fill="#C084FC" stroke="#3D2B24" stroke-width="2.6"/></g>`
+        }
+      ,
+        { id: 'b_castle', label: 'Castle Bed', art: `<rect x="10" y="22" width="28" height="12" rx="4" fill="#F472B6" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(230, 118)"><polygon points="8,24 18,4 28,24" fill="#FDE047" stroke="#3D2B24" stroke-width="2.4"/><polygon points="116,24 126,4 136,24" fill="#FDE047" stroke="#3D2B24" stroke-width="2.4"/><rect x="0" y="24" width="144" height="54" rx="10" fill="#FBCFE8" stroke="#3D2B24" stroke-width="3"/><path d="M 14 42 L 130 42 L 130 76 L 14 76 Z" fill="#F472B6" stroke="#3D2B24" stroke-width="2.6"/></g>` },
+        { id: 'b_unicorn', label: 'Unicorn Bed', art: `<rect x="10" y="22" width="28" height="12" rx="4" fill="#DDD6FE" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(230, 128)"><polygon points="28,24 36,0 44,24" fill="#FDE047" stroke="#3D2B24" stroke-width="2.4"/><rect x="0" y="24" width="144" height="48" rx="12" fill="#EDE9FE" stroke="#3D2B24" stroke-width="3"/><path d="M 14 38 L 130 38 L 130 70 L 14 70 Z" fill="#A78BFA" stroke="#3D2B24" stroke-width="2.6"/></g>` }
+      ],
+      side: [
+        {
+          id: 'bs_vanity', label: 'Heart Vanity',
+          art: `<circle cx="24" cy="18" r="7" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/><rect x="13" y="27" width="22" height="8" rx="2" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(132, 134)"><ellipse cx="42" cy="18" rx="20" ry="18" fill="#FFFDF7" stroke="#3D2B24" stroke-width="2.8"/><ellipse cx="42" cy="18" rx="14" ry="12" fill="#E0F2FE"/><rect x="6" y="38" width="72" height="10" rx="4" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.6"/><rect x="14" y="48" width="8" height="22" fill="#F472B6" stroke="#3D2B24" stroke-width="2.2"/><rect x="62" y="48" width="8" height="22" fill="#F472B6" stroke="#3D2B24" stroke-width="2.2"/></g>`
+        },
+        {
+          id: 'bs_desk', label: 'Study Desk',
+          art: `<rect x="10" y="18" width="28" height="7" rx="2" fill="#FDBA74" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(130, 148)"><rect x="4" y="14" width="78" height="10" rx="4" fill="#FDBA74" stroke="#3D2B24" stroke-width="2.8"/><rect x="12" y="24" width="8" height="32" fill="#D97706" stroke="#3D2B24" stroke-width="2.4"/><rect x="66" y="24" width="8" height="32" fill="#D97706" stroke="#3D2B24" stroke-width="2.4"/><rect x="24" y="2" width="26" height="12" rx="3" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2.2"/></g>`
+        },
+        {
+          id: 'bs_nightstand', label: 'Night Table',
+          art: `<rect x="14" y="16" width="20" height="20" rx="4" fill="#FEF3C7" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(152, 156)"><rect x="0" y="14" width="48" height="36" rx="7" fill="#FEF3C7" stroke="#3D2B24" stroke-width="2.8"/><line x1="0" y1="32" x2="48" y2="32" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="23" r="3" fill="#FF6FA5"/><circle cx="24" cy="41" r="3" fill="#FF6FA5"/></g>`
+        },
+        {
+          id: 'bs_wardrobe', label: 'Mini Closet',
+          art: `<rect x="13" y="11" width="22" height="26" rx="4" fill="#DDD6FE" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(136, 114)"><rect x="0" y="0" width="68" height="90" rx="8" fill="#EDE9FE" stroke="#3D2B24" stroke-width="3"/><line x1="34" y1="0" x2="34" y2="90" stroke="#3D2B24" stroke-width="2.4"/><circle cx="27" cy="46" r="3" fill="#FDE047" stroke="#3D2B24" stroke-width="1.5"/><circle cx="41" cy="46" r="3" fill="#FDE047" stroke="#3D2B24" stroke-width="1.5"/></g>`
+        },
+        {
+          id: 'bs_dresser', label: 'Ribbon Chest',
+          art: `<rect x="12" y="14" width="24" height="22" rx="4" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(136, 134)"><rect x="0" y="0" width="68" height="68" rx="8" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.8"/><line x1="0" y1="23" x2="68" y2="23" stroke="#3D2B24" stroke-width="2.2"/><line x1="0" y1="46" x2="68" y2="46" stroke="#3D2B24" stroke-width="2.2"/><circle cx="34" cy="11" r="3.5" fill="#FDE047"/><circle cx="34" cy="34" r="3.5" fill="#FDE047"/><circle cx="34" cy="57" r="3.5" fill="#FDE047"/></g>`
+        },
+        {
+          id: 'bs_chair', label: 'Bunny Chair',
+          art: `<circle cx="24" cy="25" r="8" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2"/><ellipse cx="20" cy="14" rx="2.5" ry="6" fill="#FFFFFF" stroke="#3D2B24" stroke-width="1.6"/><ellipse cx="28" cy="14" rx="2.5" ry="6" fill="#FFFFFF" stroke="#3D2B24" stroke-width="1.6"/>`,
+          svg: `<g transform="translate(146, 146)"><ellipse cx="22" cy="12" rx="6" ry="16" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.4"/><ellipse cx="38" cy="12" rx="6" ry="16" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.4"/><rect x="8" y="26" width="44" height="16" rx="7" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.6"/><rect x="14" y="42" width="7" height="16" fill="#D97706" stroke="#3D2B24" stroke-width="2"/><rect x="39" y="42" width="7" height="16" fill="#D97706" stroke="#3D2B24" stroke-width="2"/></g>`
+        }
+      ,
+        { id: 'bs_bookcase', label: 'Story Shelf', art: `<rect x="13" y="12" width="22" height="24" rx="4" fill="#FEF3C7" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(136, 114)"><rect x="0" y="0" width="68" height="88" rx="8" fill="#FEF3C7" stroke="#3D2B24" stroke-width="2.8"/><line x1="0" y1="30" x2="68" y2="30" stroke="#3D2B24" stroke-width="2.4"/><line x1="0" y1="60" x2="68" y2="60" stroke="#3D2B24" stroke-width="2.4"/></g>` },
+        { id: 'bs_hammock', label: 'Hang Chair', art: `<circle cx="24" cy="24" r="9" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(138, 108)"><line x1="34" y1="0" x2="34" y2="34" stroke="#3D2B24" stroke-width="3"/><ellipse cx="34" cy="54" rx="24" ry="26" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.8"/></g>` }
+      ],
+      decor: [
+        {
+          id: 'bd_lamp', label: 'Star Lamp',
+          art: `<polygon points="24,10 27,18 35,18 29,23 31,31 24,26 17,31 19,23 13,18 21,18" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(166, 14)"><line x1="20" y1="0" x2="20" y2="24" stroke="#3D2B24" stroke-width="3"/><polygon points="20,22 25,33 37,33 28,40 31,51 20,44 9,51 12,40 3,33 15,33" fill="#FDE047" stroke="#3D2B24" stroke-width="2.6"/></g>`
+        },
+        {
+          id: 'bd_teddy', label: 'Teddy Bear',
+          art: `<circle cx="24" cy="25" r="9" fill="#FDBA74" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(274, 128)"><circle cx="10" cy="8" r="7" fill="#FDBA74" stroke="#3D2B24" stroke-width="2.4"/><circle cx="34" cy="8" r="7" fill="#FDBA74" stroke="#3D2B24" stroke-width="2.4"/><circle cx="22" cy="20" r="14" fill="#FDBA74" stroke="#3D2B24" stroke-width="2.8"/><circle cx="17" cy="18" r="2" fill="#3D2B24"/><circle cx="27" cy="18" r="2" fill="#3D2B24"/></g>`
+        },
+        {
+          id: 'bd_rainbow', label: 'Rainbow Art',
+          art: `<rect x="11" y="13" width="26" height="22" rx="4" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.2"/><path d="M 15 29 A 9 9 0 0 1 33 29" fill="none" stroke="#FF6FA5" stroke-width="3"/>`,
+          svg: `<g transform="translate(254, 30)"><rect x="0" y="0" width="92" height="56" rx="8" fill="#FFFFFF" stroke="#3D2B24" stroke-width="3"/><path d="M 16 44 A 30 30 0 0 1 76 44" fill="none" stroke="#FF6FA5" stroke-width="6" stroke-linecap="round"/><path d="M 24 44 A 22 22 0 0 1 68 44" fill="none" stroke="#FDE047" stroke-width="6" stroke-linecap="round"/><path d="M 32 44 A 14 14 0 0 1 60 44" fill="none" stroke="#38BDF8" stroke-width="6" stroke-linecap="round"/></g>`
+        },
+        {
+          id: 'bd_flags', label: 'Party Flags',
+          art: `<polygon points="15,21 21,21 18,31" fill="#FF8FAB" stroke="#3D2B24" stroke-width="1.6"/><polygon points="27,21 33,21 30,31" fill="#FDE047" stroke="#3D2B24" stroke-width="1.6"/>`,
+          svg: `<g transform="translate(132, 16)"><path d="M 0 6 Q 110 28 220 6" fill="none" stroke="#3D2B24" stroke-width="2.4"/><polygon points="24,11 40,13 32,28" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.2"/><polygon points="68,17 84,18 76,33" fill="#FDE047" stroke="#3D2B24" stroke-width="2.2"/><polygon points="116,19 132,18 124,33" fill="#6EE7B7" stroke="#3D2B24" stroke-width="2.2"/><polygon points="164,16 180,14 172,29" fill="#93C5FD" stroke="#3D2B24" stroke-width="2.2"/></g>`
+        },
+        {
+          id: 'bd_moon', label: 'Moon Light',
+          art: `<circle cx="24" cy="24" r="9" fill="#FEF08A" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(352, 34)"><circle cx="24" cy="24" r="20" fill="#FEF08A" stroke="#3D2B24" stroke-width="2.8"/><circle cx="17" cy="20" r="2.5" fill="#F59E0B"/><circle cx="29" cy="28" r="3" fill="#F59E0B"/></g>`
+        },
+        {
+          id: 'bd_plant', label: 'Bedside Pot',
+          art: `<circle cx="24" cy="20" r="8" fill="#22C55E" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(366, 162)"><path d="M 6 20 L 34 20 L 30 40 L 10 40 Z" fill="#FB923C" stroke="#3D2B24" stroke-width="2.4"/><circle cx="20" cy="12" r="11" fill="#22C55E" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        }
+      ,
+        { id: 'bd_cat', label: 'Sleepy Kitty', art: `<circle cx="24" cy="25" r="9" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(36, 204)"><circle cx="20" cy="16" r="13" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.4"/><polygon points="8,8 6,0 16,6" fill="#FF8FAB"/><polygon points="32,8 34,0 24,6" fill="#FF8FAB"/></g>` },
+        { id: 'bd_dreamcatcher', label: 'Dream Hoop', art: `<circle cx="24" cy="20" r="8" fill="#DDD6FE" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(138, 30)"><circle cx="20" cy="20" r="15" fill="#EDE9FE" stroke="#3D2B24" stroke-width="2.4"/><line x1="12" y1="35" x2="12" y2="52" stroke="#FF8FAB" stroke-width="2.5"/><line x1="20" y1="35" x2="20" y2="56" stroke="#FDE047" stroke-width="2.5"/><line x1="28" y1="35" x2="28" y2="52" stroke="#38BDF8" stroke-width="2.5"/></g>` }
+      ]
+    },
+    {
+      id: 'living',
+      name: 'Living Room',
+      tabArt: `<rect x="9" y="22" width="30" height="12" rx="6" fill="#60A5FA" stroke="#3D2B24" stroke-width="2"/><rect x="12" y="15" width="24" height="9" rx="4" fill="#BAE6FD" stroke="#3D2B24" stroke-width="1.8"/>`,
+      defaultWall: '#FFFBEB',
+      defaultFloor: '#FDBA74',
+      archSvg: `<g transform="translate(32, 26)">
+                  <rect x="0" y="0" width="96" height="96" rx="12" fill="#E0F2FE" stroke="#3D2B24" stroke-width="3.2"/>
+                  <line x1="48" y1="0" x2="48" y2="96" stroke="#3D2B24" stroke-width="2.8"/>
+                  <line x1="0" y1="48" x2="96" y2="48" stroke="#3D2B24" stroke-width="2.8"/>
+                  <circle cx="72" cy="24" r="10" fill="#FDE047"/>
+                </g>`,
+      mainTitle: '🛋️ Cozy Sofas (6)',
+      sideTitle: '📺 TV & Table (6)',
+      decorTitle: '🌿 Plants & Art (6)',
+      surfaces: [
+        { id: 'ls_cream', label: 'Sunny Cream', wall: '#FFFBEB', dot: '#FBBF24', floor: '#FDBA74', rug: '#60A5FA', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFFBEB" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#FBBF24"/>` },
+        { id: 'ls_mint', label: 'Sage Mint', wall: '#ECFDF5', dot: '#34D399', floor: '#FDE68A', rug: '#FF8FAB', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#ECFDF5" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#34D399"/>` },
+        { id: 'ls_pink', label: 'Blush Wall', wall: '#FFF0F7', dot: '#FB7185', floor: '#FDBA74', rug: '#FACC15', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFF0F7" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#FB7185"/>` },
+        { id: 'ls_sky', label: 'Breeze Blue', wall: '#EFF8FF', dot: '#38BDF8', floor: '#FEF3C7', rug: '#34D399', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#EFF8FF" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#38BDF8"/>` },
+        { id: 'ls_lav', label: 'Lilac Lounge', wall: '#F3E8FF', dot: '#A855F7', floor: '#FDE68A', rug: '#C084FC', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#F3E8FF" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#A855F7"/>` },
+        { id: 'ls_peach', label: 'Warm Apricot', wall: '#FFEDD5', dot: '#FB923C', floor: '#FDBA74', rug: '#FB7185', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFEDD5" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#FB923C"/>` }
+      ,
+        { id: 'ls_star', label: 'Cozy Stripes', pat: 'stripes', rugShape: 'rect', wall: '#FEF9C3', dot: '#FACC15', floor: '#FDE68A', rug: '#FF8FAB', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FEF9C3" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#FACC15"/>` },
+        { id: 'ls_grid', label: 'Modern Grid', pat: 'grid', rugShape: 'star', wall: '#F8FAFC', dot: '#94A3B8', floor: '#FDBA74', rug: '#38BDF8', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#F8FAFC" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#94A3B8"/>` }
+      ],
+      main: [
+        {
+          id: 'l_cloud_sofa', label: 'Cloud Sofa',
+          art: `<rect x="9" y="21" width="30" height="13" rx="6" fill="#60A5FA" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(226, 146)"><rect x="8" y="12" width="136" height="32" rx="12" fill="#BAE6FD" stroke="#3D2B24" stroke-width="3"/><rect x="0" y="24" width="152" height="28" rx="12" fill="#60A5FA" stroke="#3D2B24" stroke-width="3"/><circle cx="40" cy="24" r="10" fill="#FDE047" stroke="#3D2B24" stroke-width="2.2"/><circle cx="112" cy="24" r="10" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.2"/></g>`
+        },
+        {
+          id: 'l_pink_sofa', label: 'Berry Sofa',
+          art: `<rect x="9" y="21" width="30" height="13" rx="6" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(226, 146)"><rect x="8" y="12" width="136" height="32" rx="12" fill="#FBCFE8" stroke="#3D2B24" stroke-width="3"/><rect x="0" y="24" width="152" height="28" rx="12" fill="#FF8FAB" stroke="#3D2B24" stroke-width="3"/><circle cx="40" cy="24" r="10" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.2"/><circle cx="112" cy="24" r="10" fill="#FDE047" stroke="#3D2B24" stroke-width="2.2"/></g>`
+        },
+        {
+          id: 'l_mint_sofa', label: 'Mint Couch',
+          art: `<rect x="9" y="21" width="30" height="13" rx="6" fill="#34D399" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(226, 146)"><rect x="8" y="12" width="136" height="32" rx="12" fill="#A7F3D0" stroke="#3D2B24" stroke-width="3"/><rect x="0" y="24" width="152" height="28" rx="12" fill="#34D399" stroke="#3D2B24" stroke-width="3"/></g>`
+        },
+        {
+          id: 'l_beanbag', label: 'Giant Puff',
+          art: `<ellipse cx="24" cy="26" rx="14" ry="10" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(244, 144)"><ellipse cx="58" cy="34" rx="54" ry="26" fill="#FDE047" stroke="#3D2B24" stroke-width="3"/><ellipse cx="58" cy="26" rx="34" ry="12" fill="#FEF9C3"/></g>`
+        },
+        {
+          id: 'l_lilac_sofa', label: 'Lilac Sofa',
+          art: `<rect x="9" y="21" width="30" height="13" rx="6" fill="#C084FC" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(226, 146)"><rect x="8" y="12" width="136" height="32" rx="12" fill="#EDE9FE" stroke="#3D2B24" stroke-width="3"/><rect x="0" y="24" width="152" height="28" rx="12" fill="#C084FC" stroke="#3D2B24" stroke-width="3"/></g>`
+        },
+        {
+          id: 'l_daybed', label: 'Sunny Lounge',
+          art: `<rect x="9" y="21" width="30" height="13" rx="6" fill="#FB923C" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(226, 146)"><rect x="8" y="12" width="136" height="32" rx="12" fill="#FED7AA" stroke="#3D2B24" stroke-width="3"/><rect x="0" y="24" width="152" height="28" rx="12" fill="#FB923C" stroke="#3D2B24" stroke-width="3"/></g>`
+        }
+      ,
+        { id: 'l_corner', label: 'L-Shape Sofa', art: `<rect x="9" y="21" width="30" height="13" rx="5" fill="#F472B6" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(224, 142)"><rect x="0" y="14" width="154" height="42" rx="12" fill="#F472B6" stroke="#3D2B24" stroke-width="3"/><rect x="104" y="0" width="50" height="56" rx="12" fill="#FBCFE8" stroke="#3D2B24" stroke-width="3"/></g>` },
+        { id: 'l_swingchair', label: 'Swing Sofa', art: `<ellipse cx="24" cy="24" rx="12" ry="10" fill="#A7F3D0" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(246, 102)"><line x1="54" y1="0" x2="54" y2="26" stroke="#3D2B24" stroke-width="3.5"/><ellipse cx="54" cy="58" rx="46" ry="36" fill="#A7F3D0" stroke="#3D2B24" stroke-width="3"/></g>` }
+      ],
+      side: [
+        {
+          id: 'ls_tv', label: 'Cute TV Stand',
+          art: `<rect x="11" y="13" width="26" height="16" rx="3" fill="#334155" stroke="#3D2B24" stroke-width="2"/><rect x="13" y="29" width="22" height="7" rx="2" fill="#FDBA74" stroke="#3D2B24" stroke-width="1.8"/>`,
+          svg: `<g transform="translate(128, 126)"><rect x="8" y="0" width="76" height="48" rx="8" fill="#334155" stroke="#3D2B24" stroke-width="3"/><rect x="14" y="6" width="64" height="36" rx="4" fill="#BAE6FD"/><circle cx="46" cy="24" r="10" fill="#FF8FAB"/><rect x="4" y="52" width="84" height="22" rx="5" fill="#FDBA74" stroke="#3D2B24" stroke-width="2.8"/></g>`
+        },
+        {
+          id: 'ls_table', label: 'Tea Table',
+          art: `<ellipse cx="24" cy="22" rx="14" ry="6" fill="#FFFBEB" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(136, 172)"><ellipse cx="40" cy="12" rx="38" ry="11" fill="#FFFBEB" stroke="#3D2B24" stroke-width="2.8"/><rect x="20" y="22" width="8" height="18" fill="#D97706" stroke="#3D2B24" stroke-width="2.2"/><rect x="52" y="22" width="8" height="18" fill="#D97706" stroke="#3D2B24" stroke-width="2.2"/><circle cx="40" cy="10" r="6" fill="#FB7185"/></g>`
+        },
+        {
+          id: 'ls_shelf', label: 'Book Shelf',
+          art: `<rect x="12" y="12" width="24" height="24" rx="4" fill="#FEF3C7" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(134, 110)"><rect x="0" y="0" width="74" height="92" rx="8" fill="#FEF3C7" stroke="#3D2B24" stroke-width="3"/><line x1="0" y1="30" x2="74" y2="30" stroke="#3D2B24" stroke-width="2.8"/><line x1="0" y1="60" x2="74" y2="60" stroke="#3D2B24" stroke-width="2.8"/><rect x="10" y="8" width="12" height="20" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/><rect x="26" y="10" width="12" height="18" fill="#60A5FA" stroke="#3D2B24" stroke-width="2"/></g>`
+        },
+        {
+          id: 'ls_piano', label: 'Mini Piano',
+          art: `<rect x="10" y="16" width="28" height="18" rx="3" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(128, 136)"><rect x="0" y="0" width="82" height="58" rx="8" fill="#FF8FAB" stroke="#3D2B24" stroke-width="3"/><rect x="6" y="34" width="70" height="12" rx="2" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2"/></g>`
+        },
+        {
+          id: 'ls_fireplace', label: 'Cozy Hearth',
+          art: `<rect x="12" y="14" width="24" height="22" rx="3" fill="#FED7AA" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="28" r="5" fill="#F97316"/>`,
+          svg: `<g transform="translate(128, 124)"><rect x="0" y="0" width="82" height="74" rx="8" fill="#FED7AA" stroke="#3D2B24" stroke-width="3"/><path d="M 22 74 L 22 44 A 19 19 0 0 1 60 44 L 60 74 Z" fill="#334155" stroke="#3D2B24" stroke-width="2.5"/><circle cx="41" cy="58" r="10" fill="#F97316"/></g>`
+        },
+        {
+          id: 'ls_aquarium', label: 'Fish Tank',
+          art: `<rect x="11" y="16" width="26" height="16" rx="4" fill="#7DD3FC" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(130, 136)"><rect x="4" y="0" width="72" height="38" rx="8" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2.8"/><circle cx="32" cy="18" r="6" fill="#FB923C"/><circle cx="52" cy="22" r="5" fill="#FDE047"/><rect x="0" y="38" width="80" height="26" rx="5" fill="#FFFBEB" stroke="#3D2B24" stroke-width="2.6"/></g>`
+        }
+      ,
+        { id: 'ls_record', label: 'Music Player', art: `<rect x="12" y="18" width="24" height="16" rx="3" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(136, 148)"><rect x="0" y="10" width="68" height="44" rx="8" fill="#FDE047" stroke="#3D2B24" stroke-width="2.8"/><circle cx="34" cy="6" r="14" fill="#334155"/></g>` },
+        { id: 'ls_ottoman', label: 'Star Ottoman', art: `<ellipse cx="24" cy="24" rx="13" ry="7" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(140, 174)"><ellipse cx="34" cy="14" rx="32" ry="12" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.6"/></g>` }
+      ],
+      decor: [
+        {
+          id: 'ld_plant', label: 'Big Plant',
+          art: `<path d="M 16 25 L 32 25 L 30 36 L 18 36 Z" fill="#FB923C" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="18" r="7" fill="#22C55E" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(362, 148)"><path d="M 6 24 L 40 24 L 35 48 L 11 48 Z" fill="#FB923C" stroke="#3D2B24" stroke-width="2.8"/><circle cx="23" cy="13" r="13" fill="#22C55E" stroke="#3D2B24" stroke-width="2.8"/><circle cx="13" cy="18" r="9" fill="#4ADE80" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        },
+        {
+          id: 'ld_clock', label: 'Cat Clock',
+          art: `<circle cx="24" cy="24" r="11" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.2"/>`,
+          svg: `<g transform="translate(268, 30)"><polygon points="10,14 6,2 20,10" fill="#FDE047" stroke="#3D2B24" stroke-width="2.4"/><polygon points="42,14 46,2 32,10" fill="#FDE047" stroke="#3D2B24" stroke-width="2.4"/><circle cx="26" cy="26" r="20" fill="#FFFFFF" stroke="#3D2B24" stroke-width="3"/><line x1="26" y1="26" x2="26" y2="14" stroke="#3D2B24" stroke-width="2.6" stroke-linecap="round"/><line x1="26" y1="26" x2="35" y2="26" stroke="#FF6FA5" stroke-width="2.6" stroke-linecap="round"/></g>`
+        },
+        {
+          id: 'ld_chandelier', label: 'Crown Light',
+          art: `<path d="M 12 24 Q 24 32 36 24" fill="none" stroke="#FDE047" stroke-width="3"/>`,
+          svg: `<g transform="translate(184, 0)"><line x1="36" y1="0" x2="36" y2="22" stroke="#3D2B24" stroke-width="3"/><path d="M 8 24 Q 36 38 64 24" fill="none" stroke="#F59E0B" stroke-width="3.5"/><circle cx="12" cy="20" r="6" fill="#FEF08A" stroke="#3D2B24" stroke-width="2"/><circle cx="36" cy="24" r="7" fill="#FEF08A" stroke="#3D2B24" stroke-width="2"/><circle cx="60" cy="20" r="6" fill="#FEF08A" stroke="#3D2B24" stroke-width="2"/></g>`
+        },
+        {
+          id: 'ld_cat', label: 'Kitty Cushion',
+          art: `<circle cx="24" cy="25" r="10" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(186, 206)"><circle cx="22" cy="18" r="14" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.6"/><polygon points="10,10 8,0 18,7" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/><polygon points="34,10 36,0 26,7" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/></g>`
+        },
+        {
+          id: 'ld_frame', label: 'Heart Frame',
+          art: `<rect x="12" y="14" width="24" height="20" rx="4" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(334, 34)"><rect x="0" y="0" width="58" height="48" rx="8" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.8"/><circle cx="29" cy="24" r="12" fill="#FF8FAB"/></g>`
+        },
+        {
+          id: 'ld_floorlamp', label: 'Floor Lamp',
+          art: `<polygon points="16,22 32,22 28,12 20,12" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/><line x1="24" y1="22" x2="24" y2="36" stroke="#3D2B24" stroke-width="2.5"/>`,
+          svg: `<g transform="translate(370, 88)"><line x1="20" y1="26" x2="20" y2="112" stroke="#3D2B24" stroke-width="3.5"/><polygon points="4,28 36,28 30,4 10,4" fill="#FDE047" stroke="#3D2B24" stroke-width="2.6"/></g>`
+        }
+      ,
+        { id: 'ld_books_pile', label: 'Story Stack', art: `<rect x="13" y="20" width="22" height="12" rx="2" fill="#60A5FA"/>`, svg: `<g transform="translate(36, 204)"><rect x="0" y="16" width="36" height="10" rx="3" fill="#60A5FA" stroke="#3D2B24" stroke-width="2"/><rect x="4" y="6" width="28" height="10" rx="3" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/></g>` },
+        { id: 'ld_garland', label: 'Leaf Garland', art: `<path d="M 10 20 Q 24 28 38 20" fill="none" stroke="#22C55E" stroke-width="3"/>`, svg: `<g transform="translate(136, 14)"><path d="M 0 6 Q 115 26 230 6" fill="none" stroke="#22C55E" stroke-width="5" stroke-linecap="round"/></g>` }
+      ]
+    },
+    {
+      id: 'kitchen',
+      name: 'Kitchen',
+      tabArt: `<rect x="11" y="16" width="26" height="20" rx="4" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="26" r="5" fill="#FFFFFF" stroke="#3D2B24" stroke-width="1.8"/>`,
+      defaultWall: '#FFF0F7',
+      defaultFloor: '#FEF3C7',
+      archSvg: `<g transform="translate(26, 22)">
+                  <rect x="0" y="0" width="110" height="54" rx="8" fill="#FFFFFF" stroke="#3D2B24" stroke-width="3"/>
+                  <line x1="55" y1="0" x2="55" y2="54" stroke="#3D2B24" stroke-width="2.6"/>
+                  <circle cx="46" cy="28" r="3" fill="#FF6FA5"/><circle cx="64" cy="28" r="3" fill="#FF6FA5"/>
+                </g>`,
+      mainTitle: '🍳 Stove & Counter (6)',
+      sideTitle: '🧊 Fridge & Dining (6)',
+      decorTitle: '🧁 Kitchen Treats (6)',
+      surfaces: [
+        { id: 'ks_pink', label: 'Strawberry Tile', wall: '#FFF0F7', dot: '#FF8FAB', floor: '#FEF3C7', rug: '#FF8FAB', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFF0F7" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#FF8FAB"/>` },
+        { id: 'ks_mint', label: 'Mint Cafe', wall: '#ECFDF5', dot: '#34D399', floor: '#FDE68A', rug: '#34D399', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#ECFDF5" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#34D399"/>` },
+        { id: 'ks_lemon', label: 'Lemon Bakery', wall: '#FEF9C3', dot: '#FACC15', floor: '#FDBA74', rug: '#FACC15', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FEF9C3" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#FACC15"/>` },
+        { id: 'ks_sky', label: 'Milk Blue', wall: '#E0F2FE', dot: '#38BDF8', floor: '#FEF3C7', rug: '#60A5FA', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#E0F2FE" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#38BDF8"/>` },
+        { id: 'ks_peach', label: 'Peach Pie', wall: '#FFEDD5', dot: '#FB923C', floor: '#FEF3C7', rug: '#FB923C', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFEDD5" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#FB923C"/>` },
+        { id: 'ks_lav', label: 'Berry Cream', wall: '#F3E8FF', dot: '#C084FC', floor: '#FDE68A', rug: '#C084FC', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#F3E8FF" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#C084FC"/>` }
+      ,
+        { id: 'ks_check', label: 'Diner Check', pat: 'grid', rugShape: 'rect', wall: '#FFF0F7', dot: '#FF6FA5', floor: '#FEF3C7', rug: '#FF6FA5', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFF0F7" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#FF6FA5"/>` },
+        { id: 'ks_stripe', label: 'Candy Stripe', pat: 'stripes', rugShape: 'star', wall: '#FEF9C3', dot: '#FB923C', floor: '#FDE68A', rug: '#38BDF8', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FEF9C3" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#FB923C"/>` }
+      ],
+      main: [
+        {
+          id: 'k_pink_stove', label: 'Pink Kitchen',
+          art: `<rect x="10" y="16" width="28" height="20" rx="4" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(224, 134)"><rect x="0" y="0" width="156" height="66" rx="10" fill="#FBCFE8" stroke="#3D2B24" stroke-width="3"/><rect x="0" y="0" width="156" height="12" rx="4" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.6"/><rect x="22" y="22" width="44" height="32" rx="6" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.4"/><circle cx="106" cy="36" r="14" fill="#FFFDF7" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        },
+        {
+          id: 'k_mint_stove', label: 'Mint Island',
+          art: `<rect x="10" y="16" width="28" height="20" rx="4" fill="#6EE7B7" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(224, 134)"><rect x="0" y="0" width="156" height="66" rx="10" fill="#A7F3D0" stroke="#3D2B24" stroke-width="3"/><rect x="0" y="0" width="156" height="12" rx="4" fill="#FFFBEB" stroke="#3D2B24" stroke-width="2.6"/><rect x="22" y="22" width="44" height="32" rx="6" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        },
+        {
+          id: 'k_wood_stove', label: 'Bakery Oven',
+          art: `<rect x="10" y="16" width="28" height="20" rx="4" fill="#FDBA74" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(224, 134)"><rect x="0" y="0" width="156" height="66" rx="10" fill="#FED7AA" stroke="#3D2B24" stroke-width="3"/><rect x="24" y="20" width="52" height="34" rx="6" fill="#F97316" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        },
+        {
+          id: 'k_sky_stove', label: 'Sky Counter',
+          art: `<rect x="10" y="16" width="28" height="20" rx="4" fill="#7DD3FC" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(224, 134)"><rect x="0" y="0" width="156" height="66" rx="10" fill="#BAE6FD" stroke="#3D2B24" stroke-width="3"/><rect x="0" y="0" width="156" height="12" rx="4" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.6"/></g>`
+        },
+        {
+          id: 'k_gold_stove', label: 'Gold Counter',
+          art: `<rect x="10" y="16" width="28" height="20" rx="4" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(224, 134)"><rect x="0" y="0" width="156" height="66" rx="10" fill="#FEF08A" stroke="#3D2B24" stroke-width="3"/><rect x="0" y="0" width="156" height="12" rx="4" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.6"/></g>`
+        },
+        {
+          id: 'k_lilac_stove', label: 'Lilac Kitchen',
+          art: `<rect x="10" y="16" width="28" height="20" rx="4" fill="#DDD6FE" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(224, 134)"><rect x="0" y="0" width="156" height="66" rx="10" fill="#EDE9FE" stroke="#3D2B24" stroke-width="3"/><rect x="0" y="0" width="156" height="12" rx="4" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.6"/></g>`
+        }
+      ,
+        { id: 'k_heart_stove', label: 'Heart Range', art: `<rect x="10" y="16" width="28" height="20" rx="4" fill="#F472B6" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(224, 134)"><rect x="0" y="0" width="156" height="66" rx="10" fill="#F472B6" stroke="#3D2B24" stroke-width="3"/><rect x="0" y="0" width="156" height="12" rx="4" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.6"/></g>` },
+        { id: 'k_retro_stove', label: 'Retro Diner', art: `<rect x="10" y="16" width="28" height="20" rx="4" fill="#FB7185" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(224, 134)"><rect x="0" y="0" width="156" height="66" rx="10" fill="#FB7185" stroke="#3D2B24" stroke-width="3"/><rect x="0" y="0" width="156" height="12" rx="4" fill="#FDE047" stroke="#3D2B24" stroke-width="2.6"/></g>` }
+      ],
+      side: [
+        {
+          id: 'ks_fridge', label: 'Pastel Fridge',
+          art: `<rect x="15" y="10" width="18" height="28" rx="4" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(142, 92)"><rect x="0" y="0" width="64" height="108" rx="12" fill="#E0F2FE" stroke="#3D2B24" stroke-width="3"/><line x1="0" y1="42" x2="64" y2="42" stroke="#3D2B24" stroke-width="2.8"/><line x1="12" y1="16" x2="12" y2="32" stroke="#3D2B24" stroke-width="3" stroke-linecap="round"/><line x1="12" y1="54" x2="12" y2="78" stroke="#3D2B24" stroke-width="3" stroke-linecap="round"/></g>`
+        },
+        {
+          id: 'ks_table', label: 'Dining Table',
+          art: `<ellipse cx="24" cy="22" rx="14" ry="6" fill="#FDE68A" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(124, 158)"><ellipse cx="46" cy="14" rx="44" ry="12" fill="#FFFBEB" stroke="#3D2B24" stroke-width="2.8"/><rect x="26" y="25" width="8" height="24" fill="#D97706" stroke="#3D2B24" stroke-width="2.4"/><rect x="58" y="25" width="8" height="24" fill="#D97706" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        },
+        {
+          id: 'ks_cart', label: 'Dessert Cart',
+          art: `<rect x="12" y="16" width="24" height="16" rx="3" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(136, 150)"><rect x="0" y="8" width="68" height="10" rx="4" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.6"/><rect x="0" y="28" width="68" height="10" rx="4" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.6"/><circle cx="14" cy="46" r="6" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/><circle cx="54" cy="46" r="6" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/></g>`
+        },
+        {
+          id: 'ks_pantry', label: 'Snack Rack',
+          art: `<rect x="13" y="12" width="22" height="24" rx="4" fill="#FEF3C7" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(142, 114)"><rect x="0" y="0" width="64" height="86" rx="8" fill="#FEF3C7" stroke="#3D2B24" stroke-width="2.8"/><line x1="0" y1="28" x2="64" y2="28" stroke="#3D2B24" stroke-width="2.4"/><line x1="0" y1="56" x2="64" y2="56" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        },
+        {
+          id: 'ks_pinkfridge', label: 'Berry Fridge',
+          art: `<rect x="15" y="10" width="18" height="28" rx="4" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(142, 92)"><rect x="0" y="0" width="64" height="108" rx="12" fill="#FBCFE8" stroke="#3D2B24" stroke-width="3"/><line x1="0" y1="42" x2="64" y2="42" stroke="#3D2B24" stroke-width="2.8"/></g>`
+        },
+        {
+          id: 'ks_highchair', label: 'Bar Stools',
+          art: `<circle cx="24" cy="20" r="8" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(132, 152)"><ellipse cx="22" cy="8" rx="18" ry="7" fill="#FDE047" stroke="#3D2B24" stroke-width="2.4"/><rect x="18" y="15" width="8" height="32" fill="#3D2B24"/><ellipse cx="62" cy="8" rx="18" ry="7" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.4"/><rect x="58" y="15" width="8" height="32" fill="#3D2B24"/></g>`
+        }
+      ,
+        { id: 'ks_dishrack', label: 'Dish Cabinet', art: `<rect x="13" y="12" width="22" height="24" rx="4" fill="#E0F2FE" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(140, 108)"><rect x="0" y="0" width="66" height="92" rx="8" fill="#E0F2FE" stroke="#3D2B24" stroke-width="2.8"/><circle cx="22" cy="24" r="8" fill="#FFFFFF"/><circle cx="44" cy="24" r="8" fill="#FFFFFF"/></g>` },
+        { id: 'ks_breakfast', label: 'Cozy Booth', art: `<rect x="11" y="18" width="26" height="16" rx="5" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(124, 146)"><rect x="0" y="0" width="76" height="52" rx="10" fill="#FDE047" stroke="#3D2B24" stroke-width="2.8"/></g>` }
+      ],
+      decor: [
+        {
+          id: 'kd_cake', label: 'Berry Cake',
+          art: `<rect x="13" y="22" width="22" height="12" rx="3" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="18" r="4" fill="#F43F5E"/>`,
+          svg: `<g transform="translate(274, 108)"><rect x="6" y="14" width="38" height="16" rx="5" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.5"/><circle cx="25" cy="10" r="6" fill="#F43F5E" stroke="#3D2B24" stroke-width="2"/></g>`
+        },
+        {
+          id: 'kd_kettle', label: 'Yellow Pot',
+          art: `<circle cx="24" cy="25" r="9" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(324, 112)"><ellipse cx="20" cy="18" rx="15" ry="10" fill="#FDE047" stroke="#3D2B24" stroke-width="2.5"/><path d="M 12 8 Q 20 2 28 8" fill="none" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        },
+        {
+          id: 'kd_shelf', label: 'Spice Shelf',
+          art: `<line x1="10" y1="26" x2="38" y2="26" stroke="#3D2B24" stroke-width="3"/>`,
+          svg: `<g transform="translate(230, 56)"><rect x="0" y="18" width="124" height="8" rx="3" fill="#FDBA74" stroke="#3D2B24" stroke-width="2.5"/><rect x="16" y="2" width="14" height="16" rx="3" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/><rect x="42" y="4" width="14" height="14" rx="3" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/><rect x="68" y="2" width="14" height="16" rx="3" fill="#6EE7B7" stroke="#3D2B24" stroke-width="2"/></g>`
+        },
+        {
+          id: 'kd_hood', label: 'Chef Hood',
+          art: `<polygon points="18,12 30,12 36,28 12,28" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(254, 0)"><polygon points="26,0 58,0 74,48 10,48" fill="#FFFFFF" stroke="#3D2B24" stroke-width="3" stroke-linejoin="round"/></g>`
+        },
+        {
+          id: 'kd_mixer', label: 'Stand Mixer',
+          art: `<rect x="15" y="15" width="18" height="18" rx="5" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(232, 108)"><rect x="4" y="6" width="28" height="22" rx="7" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        },
+        {
+          id: 'kd_fruit', label: 'Fruit Bowl',
+          art: `<ellipse cx="24" cy="26" rx="12" ry="6" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(362, 114)"><ellipse cx="18" cy="18" rx="15" ry="7" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.4"/><circle cx="14" cy="12" r="5" fill="#EF4444"/><circle cx="22" cy="12" r="5" fill="#FACC15"/></g>`
+        }
+      ,
+        { id: 'kd_clock', label: 'Apple Clock', art: `<circle cx="24" cy="24" r="10" fill="#EF4444" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(168, 34)"><circle cx="20" cy="20" r="16" fill="#EF4444" stroke="#3D2B24" stroke-width="2.6"/><circle cx="20" cy="20" r="10" fill="#FFFFFF"/></g>` },
+        { id: 'kd_cookie', label: 'Cookie Jar', art: `<circle cx="24" cy="24" r="9" fill="#FDBA74" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(36, 202)"><rect x="4" y="6" width="26" height="28" rx="8" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2.4"/><circle cx="17" cy="20" r="7" fill="#FDBA74"/></g>` }
+      ]
+    },
+    {
+      id: 'bathroom',
+      name: 'Bathroom',
+      tabArt: `<path d="M 10 22 L 38 22 L 34 34 L 14 34 Z" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2"/><circle cx="18" cy="17" r="4" fill="#BAE6FD"/><circle cx="28" cy="16" r="5" fill="#E0F2FE"/>`,
+      defaultWall: '#E0F2FE',
+      defaultFloor: '#BAE6FD',
+      archSvg: `<g transform="translate(36, 28)">
+                  <ellipse cx="42" cy="44" rx="34" ry="40" fill="#FFFFFF" stroke="#3D2B24" stroke-width="3.2"/>
+                  <ellipse cx="42" cy="44" rx="26" ry="32" fill="#E0F2FE"/>
+                </g>`,
+      mainTitle: '🛁 Bubble Tubs (6)',
+      sideTitle: '🪥 Sink & Vanity (6)',
+      decorTitle: '🫧 Bubbles & Duck (6)',
+      surfaces: [
+        { id: 'bs_aqua', label: 'Aqua Tile', wall: '#E0F2FE', dot: '#38BDF8', floor: '#BAE6FD', rug: '#FF8FAB', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#E0F2FE" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#38BDF8"/>` },
+        { id: 'bs_pink', label: 'Bubble Pink', wall: '#FFF0F7', dot: '#FF8FAB', floor: '#FBCFE8', rug: '#FDE047', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFF0F7" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#FF8FAB"/>` },
+        { id: 'bs_mint', label: 'Spa Mint', wall: '#ECFDF5', dot: '#34D399', floor: '#A7F3D0', rug: '#60A5FA', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#ECFDF5" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#34D399"/>` },
+        { id: 'bs_lemon', label: 'Sunny Bath', wall: '#FEF9C3', dot: '#FACC15', floor: '#FDE68A', rug: '#34D399', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FEF9C3" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#FACC15"/>` },
+        { id: 'bs_lav', label: 'Lilac Spa', wall: '#F3E8FF', dot: '#C084FC', floor: '#DDD6FE', rug: '#FF8FAB', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#F3E8FF" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#C084FC"/>` },
+        { id: 'bs_peach', label: 'Peach Bath', wall: '#FFEDD5', dot: '#FB923C', floor: '#FED7AA', rug: '#38BDF8', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFEDD5" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#FB923C"/>` }
+      ,
+        { id: 'bs_mosaic', label: 'Mosaic Blue', pat: 'grid', rugShape: 'rect', wall: '#E0F2FE', dot: '#38BDF8', floor: '#BAE6FD', rug: '#FDE047', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#E0F2FE" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#38BDF8"/>` },
+        { id: 'bs_stripe', label: 'Candy Spa', pat: 'stripes', rugShape: 'star', wall: '#FFF0F7', dot: '#FF6FA5', floor: '#FBCFE8', rug: '#FF6FA5', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFF0F7" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#FF6FA5"/>` }
+      ],
+      main: [
+        {
+          id: 'bt_claw', label: 'Clawfoot Tub',
+          art: `<path d="M 10 22 L 38 22 L 34 34 L 14 34 Z" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(226, 134)"><circle cx="32" cy="18" r="14" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.2"/><circle cx="56" cy="14" r="16" fill="#E0F2FE" stroke="#3D2B24" stroke-width="2.2"/><circle cx="84" cy="16" r="15" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.2"/><circle cx="110" cy="20" r="12" fill="#E0F2FE" stroke="#3D2B24" stroke-width="2.2"/><path d="M 6 22 L 142 22 L 130 62 Q 74 70 18 62 Z" fill="#FFFFFF" stroke="#3D2B24" stroke-width="3" stroke-linejoin="round"/><rect x="4" y="18" width="140" height="8" rx="4" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.6"/></g>`
+        },
+        {
+          id: 'bt_pink', label: 'Heart Tub',
+          art: `<path d="M 10 22 L 38 22 L 34 34 L 14 34 Z" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(226, 134)"><circle cx="44" cy="16" r="15" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.2"/><circle cx="78" cy="14" r="16" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.2"/><path d="M 6 22 L 142 22 L 130 62 Q 74 70 18 62 Z" fill="#FF8FAB" stroke="#3D2B24" stroke-width="3" stroke-linejoin="round"/></g>`
+        },
+        {
+          id: 'bt_sky', label: 'Cloud Tub',
+          art: `<path d="M 10 22 L 38 22 L 34 34 L 14 34 Z" fill="#7DD3FC" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(226, 134)"><circle cx="54" cy="16" r="16" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.2"/><circle cx="88" cy="18" r="14" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.2"/><path d="M 6 22 L 142 22 L 130 62 Q 74 70 18 62 Z" fill="#7DD3FC" stroke="#3D2B24" stroke-width="3" stroke-linejoin="round"/></g>`
+        },
+        {
+          id: 'bt_gold', label: 'Royal Tub',
+          art: `<path d="M 10 22 L 38 22 L 34 34 L 14 34 Z" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(226, 134)"><circle cx="62" cy="15" r="16" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.2"/><path d="M 6 22 L 142 22 L 130 62 Q 74 70 18 62 Z" fill="#FDE047" stroke="#3D2B24" stroke-width="3" stroke-linejoin="round"/></g>`
+        },
+        {
+          id: 'bt_mint', label: 'Mint Spa Tub',
+          art: `<path d="M 10 22 L 38 22 L 34 34 L 14 34 Z" fill="#6EE7B7" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(226, 134)"><circle cx="52" cy="16" r="15" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.2"/><path d="M 6 22 L 142 22 L 130 62 Q 74 70 18 62 Z" fill="#6EE7B7" stroke="#3D2B24" stroke-width="3" stroke-linejoin="round"/></g>`
+        },
+        {
+          id: 'bt_lilac', label: 'Lilac Tub',
+          art: `<path d="M 10 22 L 38 22 L 34 34 L 14 34 Z" fill="#DDD6FE" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(226, 134)"><circle cx="70" cy="16" r="15" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.2"/><path d="M 6 22 L 142 22 L 130 62 Q 74 70 18 62 Z" fill="#DDD6FE" stroke="#3D2B24" stroke-width="3" stroke-linejoin="round"/></g>`
+        }
+      ,
+        { id: 'bt_shell', label: 'Shell Tub', art: `<path d="M 10 22 L 38 22 L 34 34 L 14 34 Z" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(226, 134)"><circle cx="58" cy="15" r="16" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.2"/><path d="M 6 22 L 142 22 L 130 62 Q 74 70 18 62 Z" fill="#FBCFE8" stroke="#3D2B24" stroke-width="3"/></g>` },
+        { id: 'bt_round', label: 'Round Jacuzzi', art: `<ellipse cx="24" cy="25" rx="14" ry="9" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(232, 138)"><ellipse cx="68" cy="36" rx="64" ry="24" fill="#FFFFFF" stroke="#3D2B24" stroke-width="3"/><ellipse cx="68" cy="32" rx="54" ry="18" fill="#BAE6FD"/></g>` }
+      ],
+      side: [
+        {
+          id: 'bts_sink', label: 'Wash Sink',
+          art: `<rect x="13" y="20" width="22" height="14" rx="4" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(134, 146)"><rect x="6" y="14" width="66" height="42" rx="8" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.8"/><path d="M 38 14 L 38 2 Q 46 2 46 8" fill="none" stroke="#94A3B8" stroke-width="3.5" stroke-linecap="round"/></g>`
+        },
+        {
+          id: 'bts_hamper', label: 'Towel Basket',
+          art: `<rect x="14" y="16" width="20" height="20" rx="5" fill="#FDBA74" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(148, 156)"><rect x="0" y="10" width="48" height="38" rx="8" fill="#FDBA74" stroke="#3D2B24" stroke-width="2.8"/><ellipse cx="24" cy="10" rx="20" ry="7" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.2"/></g>`
+        },
+        {
+          id: 'bts_rack', label: 'Towel Rack',
+          art: `<line x1="12" y1="18" x2="36" y2="18" stroke="#3D2B24" stroke-width="2.5"/><rect x="16" y="18" width="16" height="16" fill="#FF8FAB" stroke="#3D2B24" stroke-width="1.8"/>`,
+          svg: `<g transform="translate(138, 124)"><line x1="0" y1="6" x2="64" y2="6" stroke="#3D2B24" stroke-width="3.5" stroke-linecap="round"/><rect x="10" y="6" width="20" height="36" rx="4" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.4"/><rect x="36" y="6" width="20" height="32" rx="4" fill="#FDE047" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        },
+        {
+          id: 'bts_stool', label: 'Bath Stool',
+          art: `<rect x="13" y="22" width="22" height="10" rx="4" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(144, 174)"><rect x="0" y="0" width="52" height="12" rx="5" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2.6"/><rect x="8" y="12" width="8" height="18" fill="#60A5FA" stroke="#3D2B24" stroke-width="2.2"/><rect x="36" y="12" width="8" height="18" fill="#60A5FA" stroke="#3D2B24" stroke-width="2.2"/></g>`
+        },
+        {
+          id: 'bts_cabinet', label: 'Soap Shelf',
+          art: `<rect x="14" y="12" width="20" height="24" rx="4" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(144, 118)"><rect x="0" y="0" width="56" height="78" rx="8" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.8"/><line x1="0" y1="38" x2="56" y2="38" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        },
+        {
+          id: 'bts_scale', label: 'Cloud Mat',
+          art: `<ellipse cx="24" cy="25" rx="14" ry="8" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(132, 206)"><ellipse cx="42" cy="14" rx="38" ry="12" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        }
+      ,
+        { id: 'bts_vanity2', label: 'Pink Vanity', art: `<rect x="13" y="20" width="22" height="14" rx="4" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(134, 146)"><rect x="6" y="14" width="66" height="42" rx="8" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.8"/></g>` },
+        { id: 'bts_shelf2', label: 'Towel Tower', art: `<rect x="14" y="12" width="20" height="24" rx="4" fill="#FEF3C7" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(144, 118)"><rect x="0" y="0" width="56" height="78" rx="8" fill="#FEF3C7" stroke="#3D2B24" stroke-width="2.8"/></g>` }
+      ],
+      decor: [
+        {
+          id: 'btd_duck', label: 'Rubber Duck',
+          art: `<circle cx="24" cy="24" r="9" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(274, 118)"><ellipse cx="22" cy="24" rx="14" ry="10" fill="#FDE047" stroke="#3D2B24" stroke-width="2.4"/><circle cx="28" cy="13" r="8" fill="#FDE047" stroke="#3D2B24" stroke-width="2.4"/><polygon points="35,13 42,15 35,17" fill="#FB923C" stroke="#3D2B24" stroke-width="1.6"/></g>`
+        },
+        {
+          id: 'btd_bubbles', label: 'Float Bubbles',
+          art: `<circle cx="19" cy="22" r="6" fill="#E0F2FE" stroke="#3D2B24" stroke-width="1.8"/><circle cx="30" cy="27" r="5" fill="#FBCFE8" stroke="#3D2B24" stroke-width="1.8"/>`,
+          svg: `<g transform="translate(230, 34)"><circle cx="24" cy="28" r="14" fill="#E0F2FE" opacity="0.8" stroke="#38BDF8" stroke-width="2.2"/><circle cx="66" cy="18" r="10" fill="#FBCFE8" opacity="0.8" stroke="#FF8FAB" stroke-width="2.2"/><circle cx="104" cy="34" r="16" fill="#FEF9C3" opacity="0.8" stroke="#FACC15" stroke-width="2.2"/></g>`
+        },
+        {
+          id: 'btd_shower', label: 'Rain Shower',
+          art: `<path d="M 16 14 L 30 22" stroke="#3D2B24" stroke-width="3"/>`,
+          svg: `<g transform="translate(334, 42)"><path d="M 44 0 L 44 24 L 18 36" fill="none" stroke="#94A3B8" stroke-width="4" stroke-linecap="round"/><ellipse cx="16" cy="38" rx="12" ry="5" fill="#CBD5E1" stroke="#3D2B24" stroke-width="2.2"/></g>`
+        },
+        {
+          id: 'btd_plant', label: 'Spa Fern',
+          art: `<circle cx="24" cy="22" r="9" fill="#34D399" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(362, 152)"><path d="M 6 24 L 38 24 L 33 46 L 11 46 Z" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.6"/><circle cx="22" cy="14" r="13" fill="#34D399" stroke="#3D2B24" stroke-width="2.6"/></g>`
+        },
+        {
+          id: 'btd_bottles', label: 'Shampoo Set',
+          art: `<rect x="16" y="16" width="7" height="18" rx="2" fill="#FF8FAB"/><rect x="26" y="18" width="7" height="16" rx="2" fill="#38BDF8"/>`,
+          svg: `<g transform="translate(230, 124)"><rect x="4" y="6" width="12" height="22" rx="4" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/><rect x="20" y="10" width="12" height="18" rx="4" fill="#38BDF8" stroke="#3D2B24" stroke-width="2"/></g>`
+        },
+        {
+          id: 'btd_whale', label: 'Toy Whale',
+          art: `<ellipse cx="24" cy="25" rx="11" ry="7" fill="#60A5FA" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(318, 124)"><ellipse cx="20" cy="18" rx="16" ry="10" fill="#60A5FA" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        }
+      ,
+        { id: 'btd_starfish', label: 'Starfish Art', art: `<polygon points="24,11 27,19 35,19 29,24 31,32 24,27 17,32 19,24 13,19 21,19" fill="#FB923C"/>`, svg: `<g transform="translate(154, 42)"><polygon points="20,0 25,12 38,12 28,20 31,32 20,25 9,32 12,20 2,12 15,12" fill="#FB923C" stroke="#3D2B24" stroke-width="2.2"/></g>` },
+        { id: 'btd_slippers', label: 'Bunny Slippers', art: `<ellipse cx="24" cy="25" rx="11" ry="6" fill="#FF8FAB"/>`, svg: `<g transform="translate(36, 208)"><ellipse cx="14" cy="14" rx="10" ry="6" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/><ellipse cx="36" cy="14" rx="10" ry="6" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/></g>` }
+      ]
+    },
+    {
+      id: 'playroom',
+      name: 'Playroom',
+      tabArt: `<polygon points="24,10 38,34 10,34" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/>`,
+      defaultWall: '#FEF9C3',
+      defaultFloor: '#DCFCE7',
+      archSvg: `<g transform="translate(34, 28)">
+                  <rect x="0" y="0" width="88" height="92" rx="12" fill="#BAE6FD" stroke="#3D2B24" stroke-width="3.2"/>
+                  <circle cx="28" cy="30" r="12" fill="#FFFFFF"/>
+                  <circle cx="58" cy="40" r="14" fill="#FFFFFF"/>
+                </g>`,
+      mainTitle: '⛺ Tent & Castle (6)',
+      sideTitle: '🧸 Toy Chest & Easel (6)',
+      decorTitle: '🎈 Balloons & Blocks (6)',
+      surfaces: [
+        { id: 'ps_sun', label: 'Sunny Yellow', wall: '#FEF9C3', dot: '#FACC15', floor: '#DCFCE7', rug: '#FF8FAB', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FEF9C3" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#FACC15"/>` },
+        { id: 'ps_pink', label: 'Candy Pink', wall: '#FFF0F7', dot: '#FF8FAB', floor: '#FEF3C7', rug: '#60A5FA', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFF0F7" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#FF8FAB"/>` },
+        { id: 'ps_sky', label: 'Playful Sky', wall: '#E0F2FE', dot: '#38BDF8', floor: '#FDE68A', rug: '#34D399', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#E0F2FE" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#38BDF8"/>` },
+        { id: 'ps_lav', label: 'Fairy Lilac', wall: '#F3E8FF', dot: '#A855F7', floor: '#DCFCE7', rug: '#FACC15', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#F3E8FF" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#A855F7"/>` },
+        { id: 'ps_mint', label: 'Mint Play', wall: '#ECFDF5', dot: '#34D399', floor: '#FEF3C7', rug: '#FF8FAB', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#ECFDF5" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#34D399"/>` },
+        { id: 'ps_peach', label: 'Peach Toy', wall: '#FFEDD5', dot: '#FB923C', floor: '#DCFCE7', rug: '#60A5FA', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFEDD5" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#FB923C"/>` }
+      ,
+        { id: 'ps_check', label: 'Play Check', pat: 'grid', rugShape: 'rect', wall: '#FEF9C3', dot: '#38BDF8', floor: '#DCFCE7', rug: '#FDE047', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FEF9C3" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#38BDF8"/>` },
+        { id: 'ps_circus', label: 'Circus Stripe', pat: 'stripes', rugShape: 'star', wall: '#FFF0F7', dot: '#FACC15', floor: '#FEF3C7', rug: '#FF6FA5', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFF0F7" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#FACC15"/>` }
+      ],
+      main: [
+        {
+          id: 'pl_tent', label: 'Teepee Tent',
+          art: `<polygon points="24,10 38,34 10,34" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(232, 92)"><polygon points="68,0 132,112 4,112" fill="#FBCFE8" stroke="#3D2B24" stroke-width="3.2" stroke-linejoin="round"/><polygon points="68,36 96,112 40,112" fill="#FFFBEB" stroke="#3D2B24" stroke-width="2.6"/><circle cx="68" cy="18" r="7" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/></g>`
+        },
+        {
+          id: 'pl_castle', label: 'Dollhouse',
+          art: `<rect x="12" y="18" width="24" height="18" fill="#FDE68A" stroke="#3D2B24" stroke-width="2"/><polygon points="24,9 38,18 10,18" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(238, 102)"><rect x="10" y="28" width="112" height="74" rx="6" fill="#FEF3C7" stroke="#3D2B24" stroke-width="3"/><polygon points="66,0 128,30 4,30" fill="#FF8FAB" stroke="#3D2B24" stroke-width="3" stroke-linejoin="round"/><rect x="26" y="44" width="24" height="24" rx="4" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2.2"/><rect x="82" y="44" width="24" height="24" rx="4" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2.2"/></g>`
+        },
+        {
+          id: 'pl_slide', label: 'Indoor Slide',
+          art: `<path d="M 12 14 L 22 14 L 36 34 L 26 34 Z" fill="#60A5FA" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(228, 122)"><rect x="6" y="10" width="24" height="72" rx="5" fill="#FDE047" stroke="#3D2B24" stroke-width="2.8"/><path d="M 28 16 Q 76 22 134 80 L 116 82 Q 66 34 28 28 Z" fill="#60A5FA" stroke="#3D2B24" stroke-width="2.8"/></g>`
+        },
+        {
+          id: 'pl_kitchen', label: 'Play Kitchen',
+          art: `<rect x="12" y="14" width="24" height="22" rx="4" fill="#A7F3D0" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(242, 114)"><rect x="0" y="0" width="110" height="88" rx="10" fill="#A7F3D0" stroke="#3D2B24" stroke-width="3"/><rect x="16" y="46" width="36" height="32" rx="5" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        },
+        {
+          id: 'pl_ballpit', label: 'Ball Pit',
+          art: `<rect x="10" y="22" width="28" height="12" rx="5" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(226, 152)"><circle cx="32" cy="14" r="9" fill="#FF6FA5"/><circle cx="52" cy="12" r="9" fill="#FDE047"/><circle cx="74" cy="14" r="9" fill="#34D399"/><circle cx="96" cy="12" r="9" fill="#60A5FA"/><circle cx="116" cy="14" r="9" fill="#C084FC"/><rect x="10" y="16" width="128" height="34" rx="10" fill="#BAE6FD" stroke="#3D2B24" stroke-width="3"/></g>`
+        },
+        {
+          id: 'pl_stage', label: 'Idol Stage',
+          art: `<rect x="10" y="24" width="28" height="10" rx="3" fill="#F472B6" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(226, 156)"><rect x="4" y="16" width="140" height="28" rx="8" fill="#F472B6" stroke="#3D2B24" stroke-width="3"/><line x1="74" y1="-22" x2="74" y2="16" stroke="#3D2B24" stroke-width="3.5"/><circle cx="74" cy="-26" r="7" fill="#FDE047" stroke="#3D2B24" stroke-width="2.2"/></g>`
+        }
+      ,
+        { id: 'pl_rocket', label: 'Space Rocket', art: `<polygon points="24,9 32,26 16,26" fill="#38BDF8" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(248, 88)"><path d="M 52 0 Q 82 36 82 96 L 22 96 Q 22 36 52 0 Z" fill="#FFFFFF" stroke="#3D2B24" stroke-width="3"/><polygon points="52,0 68,26 36,26" fill="#FF6FA5" stroke="#3D2B24" stroke-width="2.5"/><circle cx="52" cy="52" r="14" fill="#38BDF8" stroke="#3D2B24" stroke-width="2.4"/></g>` },
+        { id: 'pl_cafe_booth', label: 'Play Market', art: `<rect x="11" y="16" width="26" height="18" rx="4" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(232, 114)"><rect x="6" y="42" width="124" height="46" rx="8" fill="#FDE047" stroke="#3D2B24" stroke-width="3"/><rect x="0" y="0" width="136" height="22" rx="7" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.8"/></g>` }
+      ],
+      side: [
+        {
+          id: 'pls_box', label: 'Toy Chest',
+          art: `<rect x="11" y="18" width="26" height="16" rx="4" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(130, 152)"><rect x="0" y="10" width="80" height="42" rx="8" fill="#FDE047" stroke="#3D2B24" stroke-width="2.8"/><circle cx="24" cy="8" r="10" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.2"/><circle cx="54" cy="8" r="10" fill="#60A5FA" stroke="#3D2B24" stroke-width="2.2"/></g>`
+        },
+        {
+          id: 'pls_easel', label: 'Art Easel',
+          art: `<rect x="14" y="12" width="20" height="16" rx="2" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(138, 120)"><line x1="34" y1="0" x2="10" y2="82" stroke="#D97706" stroke-width="4" stroke-linecap="round"/><line x1="34" y1="0" x2="58" y2="82" stroke="#D97706" stroke-width="4" stroke-linecap="round"/><rect x="10" y="12" width="48" height="40" rx="4" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.8"/><circle cx="34" cy="32" r="10" fill="#FF6FA5"/></g>`
+        },
+        {
+          id: 'pls_horse', label: 'Rocking Pony',
+          art: `<path d="M 10 30 Q 24 36 38 30" fill="none" stroke="#3D2B24" stroke-width="2.5"/>`,
+          svg: `<g transform="translate(130, 154)"><path d="M 4 44 Q 40 58 76 44" fill="none" stroke="#D97706" stroke-width="5" stroke-linecap="round"/><ellipse cx="40" cy="26" rx="22" ry="12" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.6"/><circle cx="56" cy="14" r="10" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.6"/></g>`
+        },
+        {
+          id: 'pls_blocks', label: 'Block Tower',
+          art: `<rect x="16" y="22" width="16" height="12" fill="#60A5FA" stroke="#3D2B24" stroke-width="2"/><rect x="18" y="12" width="12" height="10" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(144, 142)"><rect x="4" y="34" width="48" height="26" rx="4" fill="#60A5FA" stroke="#3D2B24" stroke-width="2.6"/><rect x="10" y="12" width="36" height="22" rx="4" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.6"/><polygon points="28,-4 44,12 12,12" fill="#FDE047" stroke="#3D2B24" stroke-width="2.6"/></g>`
+        },
+        {
+          id: 'pls_train', label: 'Toy Train',
+          art: `<rect x="12" y="20" width="24" height="12" rx="3" fill="#34D399" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(130, 166)"><rect x="4" y="10" width="34" height="22" rx="5" fill="#34D399" stroke="#3D2B24" stroke-width="2.5"/><rect x="42" y="14" width="30" height="18" rx="5" fill="#FDE047" stroke="#3D2B24" stroke-width="2.5"/><circle cx="14" cy="34" r="5" fill="#3D2B24"/><circle cx="28" cy="34" r="5" fill="#3D2B24"/><circle cx="56" cy="34" r="5" fill="#3D2B24"/></g>`
+        },
+        {
+          id: 'pls_books', label: 'Book Rack',
+          art: `<rect x="13" y="14" width="22" height="20" rx="4" fill="#DDD6FE" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(142, 134)"><rect x="0" y="0" width="58" height="66" rx="8" fill="#EDE9FE" stroke="#3D2B24" stroke-width="2.8"/><line x1="0" y1="33" x2="58" y2="33" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        }
+      ,
+        { id: 'pls_piano', label: 'Toy Keyboard', art: `<rect x="10" y="18" width="28" height="14" rx="3" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(132, 152)"><rect x="0" y="8" width="76" height="24" rx="6" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.6"/><rect x="12" y="32" width="8" height="18" fill="#3D2B24"/><rect x="56" y="32" width="8" height="18" fill="#3D2B24"/></g>` },
+        { id: 'pls_table', label: 'Lego Table', art: `<rect x="10" y="18" width="28" height="12" rx="3" fill="#34D399" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(130, 156)"><rect x="0" y="8" width="80" height="14" rx="4" fill="#34D399" stroke="#3D2B24" stroke-width="2.6"/><rect x="10" y="22" width="8" height="22" fill="#FDE047"/><rect x="62" y="22" width="8" height="22" fill="#FDE047"/></g>` }
+      ],
+      decor: [
+        {
+          id: 'pld_balloons', label: 'Party Balloons',
+          art: `<circle cx="19" cy="18" r="6" fill="#FF8FAB" stroke="#3D2B24" stroke-width="1.8"/><circle cx="29" cy="21" r="6" fill="#38BDF8" stroke="#3D2B24" stroke-width="1.8"/>`,
+          svg: `<g transform="translate(154, 18)"><circle cx="16" cy="18" r="14" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.5"/><circle cx="42" cy="24" r="14" fill="#FDE047" stroke="#3D2B24" stroke-width="2.5"/><circle cx="28" cy="40" r="14" fill="#38BDF8" stroke="#3D2B24" stroke-width="2.5"/></g>`
+        },
+        {
+          id: 'pld_rainbow', label: 'Rainbow Arch',
+          art: `<path d="M 12 30 A 12 12 0 0 1 36 30" fill="none" stroke="#FF6FA5" stroke-width="4"/>`,
+          svg: `<g transform="translate(260, 28)"><path d="M 10 48 A 36 36 0 0 1 82 48" fill="none" stroke="#FF6FA5" stroke-width="7" stroke-linecap="round"/><path d="M 19 48 A 27 27 0 0 1 73 48" fill="none" stroke="#FDE047" stroke-width="7" stroke-linecap="round"/><path d="M 28 48 A 18 18 0 0 1 64 48" fill="none" stroke="#34D399" stroke-width="7" stroke-linecap="round"/></g>`
+        },
+        {
+          id: 'pld_unicorn', label: 'Unicorn Plush',
+          art: `<circle cx="24" cy="24" r="9" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2"/><polygon points="24,9 21,16 27,16" fill="#FDE047"/>`,
+          svg: `<g transform="translate(362, 168)"><circle cx="22" cy="22" r="15" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.6"/><polygon points="22,-4 17,9 27,9" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/></g>`
+        },
+        {
+          id: 'pld_star', label: 'Star Garland',
+          art: `<polygon points="24,11 27,19 35,19 29,24 31,32 24,27 17,32 19,24 13,19 21,19" fill="#FDE047" stroke="#3D2B24" stroke-width="1.8"/>`,
+          svg: `<g transform="translate(136, 14)"><path d="M 0 8 Q 115 26 230 8" fill="none" stroke="#3D2B24" stroke-width="2.2"/><circle cx="48" cy="15" r="7" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/><circle cx="115" cy="18" r="7" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/><circle cx="182" cy="14" r="7" fill="#6EE7B7" stroke="#3D2B24" stroke-width="2"/></g>`
+        },
+        {
+          id: 'pld_plane', label: 'Paper Plane',
+          art: `<polygon points="12,24 36,14 26,34" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(216, 46)"><polygon points="0,24 44,4 28,38" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        },
+        {
+          id: 'pld_ball', label: 'Beach Ball',
+          art: `<circle cx="24" cy="24" r="10" fill="#FF6FA5" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(356, 206)"><circle cx="18" cy="18" r="15" fill="#FF6FA5" stroke="#3D2B24" stroke-width="2.5"/><path d="M 8 8 Q 18 18 28 28" stroke="#FDE047" stroke-width="4"/></g>`
+        }
+      ,
+        { id: 'pld_cloud', label: 'Happy Cloud', art: `<ellipse cx="24" cy="24" rx="13" ry="8" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(184, 34)"><ellipse cx="28" cy="20" rx="26" ry="15" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.5"/></g>` },
+        { id: 'pld_dino', label: 'Mint Dino', art: `<circle cx="24" cy="24" r="9" fill="#34D399" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(36, 198)"><circle cx="20" cy="20" r="14" fill="#34D399" stroke="#3D2B24" stroke-width="2.5"/></g>` }
+      ]
+    },
+    {
+      id: 'garden',
+      name: 'Garden',
+      tabArt: `<circle cx="24" cy="22" r="10" fill="#4ADE80" stroke="#3D2B24" stroke-width="2"/><rect x="21" y="28" width="6" height="8" fill="#92400E"/>`,
+      defaultWall: '#E0F2FE',
+      defaultFloor: '#86EFAC',
+      archSvg: `<g transform="translate(36, 22)">
+                  <circle cx="38" cy="36" r="22" fill="#FDE047" stroke="#F59E0B" stroke-width="2.5"/>
+                  <ellipse cx="140" cy="34" rx="28" ry="12" fill="#FFFFFF"/>
+                  <ellipse cx="290" cy="28" rx="32" ry="13" fill="#FFFFFF"/>
+                </g>`,
+      mainTitle: '🏡 Garden House (6)',
+      sideTitle: '🪑 Swing & Bench (6)',
+      decorTitle: '🌷 Flowers & Pond (6)',
+      surfaces: [
+        { id: 'gs_sunny', label: 'Sunny Lawn', wall: '#E0F2FE', dot: '#FFFFFF', floor: '#86EFAC', rug: '#FDE68A', art: `<rect x="10" y="10" width="28" height="14" fill="#E0F2FE" stroke="#3D2B24" stroke-width="2"/><rect x="10" y="24" width="28" height="14" fill="#86EFAC" stroke="#3D2B24" stroke-width="2"/>` },
+        { id: 'gs_sunset', label: 'Peach Sky', wall: '#FFEDD5', dot: '#FDE047', floor: '#4ADE80', rug: '#FBCFE8', art: `<rect x="10" y="10" width="28" height="14" fill="#FFEDD5" stroke="#3D2B24" stroke-width="2"/><rect x="10" y="24" width="28" height="14" fill="#4ADE80" stroke="#3D2B24" stroke-width="2"/>` },
+        { id: 'gs_blossom', label: 'Sakura Park', wall: '#FFF0F7', dot: '#FF8FAB', floor: '#BBF7D0', rug: '#FF8FAB', art: `<rect x="10" y="10" width="28" height="14" fill="#FFF0F7" stroke="#3D2B24" stroke-width="2"/><rect x="10" y="24" width="28" height="14" fill="#BBF7D0" stroke="#3D2B24" stroke-width="2"/>` },
+        { id: 'gs_mint', label: 'Clover Field', wall: '#ECFDF5', dot: '#34D399', floor: '#86EFAC', rug: '#BAE6FD', art: `<rect x="10" y="10" width="28" height="14" fill="#ECFDF5" stroke="#3D2B24" stroke-width="2"/><rect x="10" y="24" width="28" height="14" fill="#86EFAC" stroke="#3D2B24" stroke-width="2"/>` },
+        { id: 'gs_lav', label: 'Twilight Yard', wall: '#F3E8FF', dot: '#FDE047', floor: '#4ADE80', rug: '#C084FC', art: `<rect x="10" y="10" width="28" height="14" fill="#F3E8FF" stroke="#3D2B24" stroke-width="2"/><rect x="10" y="24" width="28" height="14" fill="#4ADE80" stroke="#3D2B24" stroke-width="2"/>` },
+        { id: 'gs_lemon', label: 'Spring Meadow', wall: '#FEF9C3', dot: '#34D399', floor: '#86EFAC', rug: '#FB923C', art: `<rect x="10" y="10" width="28" height="14" fill="#FEF9C3" stroke="#3D2B24" stroke-width="2"/><rect x="10" y="24" width="28" height="14" fill="#86EFAC" stroke="#3D2B24" stroke-width="2"/>` }
+      ,
+        { id: 'gs_sky2', label: 'Breezy Clouds', pat: 'dots', rugShape: 'star', wall: '#BAE6FD', dot: '#FFFFFF', floor: '#86EFAC', rug: '#FDE047', art: `<rect x="10" y="10" width="28" height="14" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2"/><rect x="10" y="24" width="28" height="14" fill="#86EFAC" stroke="#3D2B24" stroke-width="2"/>` },
+        { id: 'gs_magic', label: 'Fairy Forest', pat: 'diamonds', rugShape: 'rect', wall: '#E0E7FF', dot: '#FDE047', floor: '#4ADE80', rug: '#FF8FAB', art: `<rect x="10" y="10" width="28" height="14" fill="#E0E7FF" stroke="#3D2B24" stroke-width="2"/><rect x="10" y="24" width="28" height="14" fill="#4ADE80" stroke="#3D2B24" stroke-width="2"/>` }
+      ],
+      main: [
+        {
+          id: 'g_gazebo', label: 'Flower Gazebo',
+          art: `<polygon points="24,10 38,20 10,20" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/><rect x="14" y="20" width="20" height="14" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(230, 88)"><polygon points="74,0 144,36 4,36" fill="#FF8FAB" stroke="#3D2B24" stroke-width="3" stroke-linejoin="round"/><rect x="18" y="36" width="10" height="76" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.6"/><rect x="120" y="36" width="10" height="76" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.6"/><rect x="12" y="104" width="124" height="12" rx="5" fill="#FDE68A" stroke="#3D2B24" stroke-width="2.6"/></g>`
+        },
+        {
+          id: 'g_treehouse', label: 'Tree House',
+          art: `<circle cx="24" cy="18" r="10" fill="#22C55E" stroke="#3D2B24" stroke-width="2"/><rect x="18" y="22" width="12" height="12" fill="#FDBA74" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(232, 82)"><rect x="56" y="54" width="32" height="66" fill="#92400E" stroke="#3D2B24" stroke-width="3"/><circle cx="72" cy="40" r="44" fill="#22C55E" stroke="#3D2B24" stroke-width="3"/><rect x="44" y="28" width="56" height="42" rx="6" fill="#FEF3C7" stroke="#3D2B24" stroke-width="2.8"/></g>`
+        },
+        {
+          id: 'g_pool', label: 'Mini Pool',
+          art: `<ellipse cx="24" cy="25" rx="15" ry="9" fill="#38BDF8" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(222, 166)"><ellipse cx="78" cy="28" rx="74" ry="24" fill="#FFFFFF" stroke="#3D2B24" stroke-width="3"/><ellipse cx="78" cy="28" rx="62" ry="18" fill="#38BDF8"/></g>`
+        },
+        {
+          id: 'g_picnic', label: 'Picnic Tent',
+          art: `<polygon points="24,12 38,32 10,32" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(236, 112)"><polygon points="66,0 130,88 2,88" fill="#FDE047" stroke="#3D2B24" stroke-width="3" stroke-linejoin="round"/></g>`
+        },
+        {
+          id: 'g_greenhouse', label: 'Glass House',
+          art: `<rect x="13" y="18" width="22" height="16" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2"/><polygon points="24,10 36,18 12,18" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(236, 98)"><rect x="10" y="28" width="116" height="76" rx="6" fill="#E0F2FE" stroke="#3D2B24" stroke-width="3"/><polygon points="68,0 130,30 6,30" fill="#FFFFFF" stroke="#3D2B24" stroke-width="3"/><circle cx="44" cy="76" r="14" fill="#22C55E"/><circle cx="92" cy="76" r="14" fill="#4ADE80"/></g>`
+        },
+        {
+          id: 'g_arch', label: 'Rose Arch',
+          art: `<path d="M 14 34 L 14 20 A 10 10 0 0 1 34 20 L 34 34" fill="none" stroke="#FF6FA5" stroke-width="4"/>`,
+          svg: `<g transform="translate(242, 92)"><path d="M 16 112 L 16 48 A 52 52 0 0 1 120 48 L 120 112" fill="none" stroke="#22C55E" stroke-width="14" stroke-linecap="round"/><circle cx="32" cy="24" r="9" fill="#FF6FA5"/><circle cx="68" cy="10" r="10" fill="#FDE047"/><circle cx="104" cy="24" r="9" fill="#FF6FA5"/></g>`
+        }
+      ,
+        { id: 'g_fountain', label: 'Grand Fountain', art: `<ellipse cx="24" cy="26" rx="14" ry="7" fill="#7DD3FC" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(230, 128)"><ellipse cx="72" cy="56" rx="64" ry="18" fill="#FFFFFF" stroke="#3D2B24" stroke-width="3"/><ellipse cx="72" cy="52" rx="54" ry="13" fill="#38BDF8"/><rect x="62" y="22" width="20" height="30" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.4"/><ellipse cx="72" cy="22" rx="32" ry="9" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2.4"/></g>` },
+        { id: 'g_carousel', label: 'Mini Carousel', art: `<polygon points="24,10 38,22 10,22" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(232, 92)"><polygon points="70,0 138,34 2,34" fill="#FDE047" stroke="#3D2B24" stroke-width="3"/><rect x="62" y="34" width="16" height="72" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.6"/><rect x="12" y="100" width="116" height="12" rx="5" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.6"/></g>` }
+      ],
+      side: [
+        {
+          id: 'gs_swing', label: 'Garden Swing',
+          art: `<rect x="14" y="24" width="20" height="6" fill="#FDBA74" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(118, 108)"><line x1="12" y1="0" x2="0" y2="94" stroke="#3D2B24" stroke-width="3.5"/><line x1="78" y1="0" x2="90" y2="94" stroke="#3D2B24" stroke-width="3.5"/><line x1="8" y1="0" x2="82" y2="0" stroke="#3D2B24" stroke-width="4"/><line x1="28" y1="0" x2="28" y2="62" stroke="#3D2B24" stroke-width="2"/><line x1="62" y1="0" x2="62" y2="62" stroke="#3D2B24" stroke-width="2"/><rect x="20" y="60" width="50" height="10" rx="4" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.5"/></g>`
+        },
+        {
+          id: 'gs_bench', label: 'Park Bench',
+          art: `<rect x="11" y="20" width="26" height="12" rx="3" fill="#FDBA74" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(124, 152)"><rect x="4" y="0" width="76" height="20" rx="5" fill="#FDBA74" stroke="#3D2B24" stroke-width="2.6"/><rect x="0" y="20" width="84" height="12" rx="4" fill="#F59E0B" stroke="#3D2B24" stroke-width="2.6"/><rect x="10" y="32" width="8" height="16" fill="#3D2B24"/><rect x="66" y="32" width="8" height="16" fill="#3D2B24"/></g>`
+        },
+        {
+          id: 'gs_fountain', label: 'Bird Bath',
+          art: `<ellipse cx="24" cy="20" rx="12" ry="5" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(136, 146)"><rect x="26" y="18" width="16" height="36" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.6"/><ellipse cx="34" cy="16" rx="28" ry="9" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2.6"/></g>`
+        },
+        {
+          id: 'gs_doghouse', label: 'Puppy House',
+          art: `<rect x="13" y="20" width="22" height="14" fill="#FFFBEB" stroke="#3D2B24" stroke-width="2"/><polygon points="24,11 37,20 11,20" fill="#FB7185"/>`,
+          svg: `<g transform="translate(128, 144)"><rect x="8" y="22" width="60" height="40" rx="5" fill="#FFFBEB" stroke="#3D2B24" stroke-width="2.8"/><polygon points="38,2 74,24 2,24" fill="#FB7185" stroke="#3D2B24" stroke-width="2.8"/><path d="M 28 62 L 28 42 A 10 10 0 0 1 48 42 L 48 62 Z" fill="#3D2B24"/></g>`
+        },
+        {
+          id: 'gs_seesaw', label: 'See-Saw',
+          art: `<line x1="10" y1="28" x2="38" y2="18" stroke="#FF6FA5" stroke-width="4" stroke-linecap="round"/>`,
+          svg: `<g transform="translate(122, 166)"><polygon points="44,14 54,32 34,32" fill="#FDE047" stroke="#3D2B24" stroke-width="2.4"/><line x1="4" y1="24" x2="84" y2="8" stroke="#FF6FA5" stroke-width="7" stroke-linecap="round"/></g>`
+        },
+        {
+          id: 'gs_hammock', label: 'Hammock',
+          art: `<path d="M 10 20 Q 24 32 38 20" fill="none" stroke="#38BDF8" stroke-width="4"/>`,
+          svg: `<g transform="translate(122, 138)"><rect x="4" y="0" width="8" height="60" fill="#92400E"/><rect x="76" y="0" width="8" height="60" fill="#92400E"/><path d="M 10 12 Q 44 46 78 12" fill="none" stroke="#38BDF8" stroke-width="8" stroke-linecap="round"/></g>`
+        }
+      ,
+        { id: 'gs_cart', label: 'Flower Cart', art: `<rect x="12" y="18" width="24" height="14" rx="4" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(124, 146)"><rect x="4" y="14" width="72" height="28" rx="6" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.6"/><circle cx="22" cy="46" r="8" fill="#FDE047" stroke="#3D2B24" stroke-width="2.2"/><circle cx="58" cy="46" r="8" fill="#FDE047" stroke="#3D2B24" stroke-width="2.2"/></g>` },
+        { id: 'gs_sandbox', label: 'Sand Castle', art: `<ellipse cx="24" cy="26" rx="14" ry="7" fill="#FDE68A" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(122, 162)"><ellipse cx="44" cy="24" rx="40" ry="14" fill="#FDE68A" stroke="#3D2B24" stroke-width="2.6"/><rect x="30" y="6" width="28" height="16" fill="#FBBF24" stroke="#3D2B24" stroke-width="2"/></g>` }
+      ],
+      decor: [
+        {
+          id: 'gd_tulips', label: 'Tulip Patch',
+          art: `<circle cx="19" cy="18" r="5" fill="#FF6FA5"/><circle cx="29" cy="18" r="5" fill="#FDE047"/>`,
+          svg: `<g transform="translate(148, 212)"><line x1="12" y1="24" x2="12" y2="8" stroke="#16A34A" stroke-width="3"/><circle cx="12" cy="6" r="6" fill="#FF6FA5" stroke="#3D2B24" stroke-width="1.8"/><line x1="34" y1="24" x2="34" y2="8" stroke="#16A34A" stroke-width="3"/><circle cx="34" cy="6" r="6" fill="#FDE047" stroke="#3D2B24" stroke-width="1.8"/><line x1="56" y1="24" x2="56" y2="8" stroke="#16A34A" stroke-width="3"/><circle cx="56" cy="6" r="6" fill="#38BDF8" stroke="#3D2B24" stroke-width="1.8"/></g>`
+        },
+        {
+          id: 'gd_butterfly', label: 'Butterflies',
+          art: `<circle cx="20" cy="22" r="5" fill="#F472B6"/><circle cx="28" cy="22" r="5" fill="#F472B6"/>`,
+          svg: `<g transform="translate(180, 62)"><ellipse cx="14" cy="14" rx="8" ry="6" fill="#F472B6" stroke="#3D2B24" stroke-width="1.8"/><ellipse cx="26" cy="14" rx="8" ry="6" fill="#F472B6" stroke="#3D2B24" stroke-width="1.8"/><ellipse cx="64" cy="26" rx="7" ry="5" fill="#FDE047" stroke="#3D2B24" stroke-width="1.8"/><ellipse cx="74" cy="26" rx="7" ry="5" fill="#FDE047" stroke="#3D2B24" stroke-width="1.8"/></g>`
+        },
+        {
+          id: 'gd_puppy', label: 'White Puppy',
+          art: `<circle cx="24" cy="24" r="9" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(358, 198)"><circle cx="22" cy="18" r="14" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.6"/><ellipse cx="9" cy="18" rx="5" ry="9" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.2"/><ellipse cx="35" cy="18" rx="5" ry="9" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.2"/><circle cx="18" cy="16" r="2" fill="#3D2B24"/><circle cx="26" cy="16" r="2" fill="#3D2B24"/></g>`
+        },
+        {
+          id: 'gd_lantern', label: 'Garden Lights',
+          art: `<circle cx="24" cy="22" r="7" fill="#FEF08A" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(132, 16)"><path d="M 0 6 Q 115 24 230 6" fill="none" stroke="#3D2B24" stroke-width="2.2"/><circle cx="48" cy="14" r="6" fill="#FEF08A" stroke="#3D2B24" stroke-width="1.8"/><circle cx="115" cy="16" r="6" fill="#FEF08A" stroke="#3D2B24" stroke-width="1.8"/><circle cx="182" cy="14" r="6" fill="#FEF08A" stroke="#3D2B24" stroke-width="1.8"/></g>`
+        },
+        {
+          id: 'gd_rainbow', label: 'Sky Rainbow',
+          art: `<path d="M 12 30 A 12 12 0 0 1 36 30" fill="none" stroke="#FF6FA5" stroke-width="4"/>`,
+          svg: `<g transform="translate(148, 24)"><path d="M 0 56 A 48 48 0 0 1 96 56" fill="none" stroke="#FF6FA5" stroke-width="6"/><path d="M 10 56 A 38 38 0 0 1 86 56" fill="none" stroke="#FDE047" stroke-width="6"/><path d="M 20 56 A 28 28 0 0 1 76 56" fill="none" stroke="#38BDF8" stroke-width="6"/></g>`
+        },
+        {
+          id: 'gd_rabbit', label: 'Garden Bunny',
+          art: `<circle cx="24" cy="26" r="8" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(34, 198)"><ellipse cx="14" cy="8" rx="4" ry="11" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/><ellipse cx="26" cy="8" rx="4" ry="11" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/><circle cx="20" cy="22" r="12" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        }
+      ,
+        { id: 'gd_birds', label: 'Bluebirds', art: `<circle cx="24" cy="24" r="8" fill="#38BDF8" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(216, 46)"><circle cx="16" cy="16" r="10" fill="#38BDF8" stroke="#3D2B24" stroke-width="2.2"/><circle cx="48" cy="24" r="9" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.2"/></g>` },
+        { id: 'gd_mushroom', label: 'Fairy Shrooms', art: `<path d="M 12 24 C 12 14, 36 14, 36 24 Z" fill="#FF6FA5"/>`, svg: `<g transform="translate(362, 166)"><rect x="14" y="18" width="12" height="18" fill="#FFFBEB" stroke="#3D2B24" stroke-width="2.2"/><path d="M 4 20 C 4 4, 36 4, 36 20 Z" fill="#FF6FA5" stroke="#3D2B24" stroke-width="2.4"/></g>` }
+      ]
+    },
+    {
+      id: 'cafe',
+      name: 'Sweet Cafe',
+      tabArt: `<rect x="11" y="18" width="26" height="16" rx="4" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/><path d="M 9 18 L 39 18 L 35 12 L 13 12 Z" fill="#FF6FA5"/>`,
+      defaultWall: '#FFF0F7',
+      defaultFloor: '#FEF3C7',
+      archSvg: `<g transform="translate(30, 26)">
+                  <rect x="0" y="0" width="94" height="58" rx="8" fill="#334155" stroke="#3D2B24" stroke-width="3"/>
+                  <text x="47" y="26" text-anchor="middle" fill="#FDE047" font-size="13" font-weight="900">ARIN CAFE</text>
+                  <text x="47" y="44" text-anchor="middle" fill="#FBCFE8" font-size="10" font-weight="700">CAKE & TEA</text>
+                </g>`,
+      mainTitle: '🧁 Bakery Showcase (6)',
+      sideTitle: '🪑 Cafe Table (6)',
+      decorTitle: '🎀 Cafe Sign & Sweets (6)',
+      surfaces: [
+        { id: 'cs_berry', label: 'Berry Pink', wall: '#FFF0F7', dot: '#FF8FAB', floor: '#FEF3C7', rug: '#FF8FAB', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFF0F7" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#FF8FAB"/>` },
+        { id: 'cs_choco', label: 'Choco Cream', wall: '#FEF3C7', dot: '#D97706', floor: '#FDBA74', rug: '#FDE047', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FEF3C7" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#D97706"/>` },
+        { id: 'cs_mint', label: 'Mint Gelato', wall: '#ECFDF5', dot: '#34D399', floor: '#FEF3C7', rug: '#34D399', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#ECFDF5" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#34D399"/>` },
+        { id: 'cs_lav', label: 'Macaron Lilac', wall: '#F3E8FF', dot: '#C084FC', floor: '#FDE68A', rug: '#C084FC', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#F3E8FF" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#C084FC"/>` },
+        { id: 'cs_sky', label: 'Soda Blue', wall: '#E0F2FE', dot: '#38BDF8', floor: '#FEF3C7', rug: '#38BDF8', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#E0F2FE" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#38BDF8"/>` },
+        { id: 'cs_peach', label: 'Peach Tart', wall: '#FFEDD5', dot: '#FB923C', floor: '#FDBA74', rug: '#FB7185', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFEDD5" stroke="#3D2B24" stroke-width="2.2"/><circle cx="24" cy="24" r="6" fill="#FB923C"/>` }
+      ],
+      main: [
+        {
+          id: 'c_pink_case', label: 'Cake Display',
+          art: `<rect x="10" y="16" width="28" height="20" rx="4" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(226, 122)"><rect x="0" y="0" width="150" height="78" rx="10" fill="#FBCFE8" stroke="#3D2B24" stroke-width="3"/><rect x="10" y="8" width="130" height="40" rx="6" fill="#E0F2FE" stroke="#3D2B24" stroke-width="2.2"/><circle cx="42" cy="34" r="10" fill="#FF6FA5"/><circle cx="76" cy="34" r="10" fill="#FDE047"/><circle cx="110" cy="34" r="10" fill="#34D399"/></g>`
+        },
+        {
+          id: 'c_mint_case', label: 'Ice Cream Bar',
+          art: `<rect x="10" y="16" width="28" height="20" rx="4" fill="#A7F3D0" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(226, 122)"><rect x="0" y="0" width="150" height="78" rx="10" fill="#A7F3D0" stroke="#3D2B24" stroke-width="3"/><rect x="10" y="8" width="130" height="40" rx="6" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.2"/><circle cx="46" cy="32" r="11" fill="#F472B6"/><circle cx="80" cy="32" r="11" fill="#38BDF8"/><circle cx="112" cy="32" r="11" fill="#FACC15"/></g>`
+        },
+        {
+          id: 'c_gold_case', label: 'Bakery Counter',
+          art: `<rect x="10" y="16" width="28" height="20" rx="4" fill="#FDE68A" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(226, 122)"><rect x="0" y="0" width="150" height="78" rx="10" fill="#FDE68A" stroke="#3D2B24" stroke-width="3"/><rect x="10" y="8" width="130" height="40" rx="6" fill="#FFFBEB" stroke="#3D2B24" stroke-width="2.2"/></g>`
+        },
+        {
+          id: 'c_sky_case', label: 'Donut Bar',
+          art: `<rect x="10" y="16" width="28" height="20" rx="4" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(226, 122)"><rect x="0" y="0" width="150" height="78" rx="10" fill="#BAE6FD" stroke="#3D2B24" stroke-width="3"/><rect x="10" y="8" width="130" height="40" rx="6" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.2"/></g>`
+        },
+        {
+          id: 'c_lilac_case', label: 'Macaron Bar',
+          art: `<rect x="10" y="16" width="28" height="20" rx="4" fill="#DDD6FE" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(226, 122)"><rect x="0" y="0" width="150" height="78" rx="10" fill="#DDD6FE" stroke="#3D2B24" stroke-width="3"/><rect x="10" y="8" width="130" height="40" rx="6" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.2"/><circle cx="48" cy="32" r="10" fill="#C084FC"/><circle cx="80" cy="32" r="10" fill="#FF8FAB"/><circle cx="112" cy="32" r="10" fill="#FDE047"/></g>`
+        },
+        {
+          id: 'c_peach_case', label: 'Waffle Stand',
+          art: `<rect x="10" y="16" width="28" height="20" rx="4" fill="#FED7AA" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(226, 122)"><rect x="0" y="0" width="150" height="78" rx="10" fill="#FED7AA" stroke="#3D2B24" stroke-width="3"/><rect x="10" y="8" width="130" height="40" rx="6" fill="#FFFBEB" stroke="#3D2B24" stroke-width="2.2"/></g>`
+        }
+      ],
+      side: [
+        {
+          id: 'cs_table', label: 'Bistro Table',
+          art: `<ellipse cx="24" cy="20" rx="13" ry="6" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(126, 152)"><ellipse cx="44" cy="12" rx="40" ry="11" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.8"/><rect x="40" y="23" width="8" height="26" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.4"/><ellipse cx="44" cy="50" rx="22" ry="6" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        },
+        {
+          id: 'cs_booth', label: 'Pink Booth',
+          art: `<rect x="11" y="18" width="26" height="16" rx="5" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(124, 144)"><rect x="0" y="0" width="76" height="54" rx="10" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.8"/><rect x="0" y="34" width="76" height="20" rx="6" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        },
+        {
+          id: 'cs_stand', label: 'Cake Stand',
+          art: `<ellipse cx="24" cy="24" rx="12" ry="5" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(136, 144)"><ellipse cx="34" cy="46" rx="26" ry="8" fill="#FDE047" stroke="#3D2B24" stroke-width="2.5"/><ellipse cx="34" cy="24" rx="20" ry="7" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.5"/><circle cx="34" cy="12" r="8" fill="#F43F5E" stroke="#3D2B24" stroke-width="2"/></g>`
+        },
+        {
+          id: 'cs_machine', label: 'Juice Maker',
+          art: `<rect x="15" y="14" width="18" height="20" rx="4" fill="#60A5FA" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(142, 138)"><rect x="0" y="10" width="54" height="52" rx="8" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2.8"/><circle cx="27" cy="28" r="11" fill="#FDE047" stroke="#3D2B24" stroke-width="2.2"/></g>`
+        },
+        {
+          id: 'cs_cashier', label: 'Pink Register',
+          art: `<rect x="13" y="16" width="22" height="18" rx="4" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(138, 146)"><rect x="0" y="12" width="60" height="40" rx="8" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.6"/><rect x="12" y="0" width="36" height="16" rx="4" fill="#FFFBEB" stroke="#3D2B24" stroke-width="2.2"/></g>`
+        },
+        {
+          id: 'cs_signboard', label: 'Menu Board',
+          art: `<polygon points="16,34 24,12 32,34" fill="#FEF3C7" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(142, 138)"><rect x="4" y="0" width="48" height="58" rx="6" fill="#334155" stroke="#3D2B24" stroke-width="2.8"/><circle cx="28" cy="22" r="10" fill="#FDE047"/></g>`
+        }
+      ],
+      decor: [
+        {
+          id: 'cd_awning', label: 'Striped Awning',
+          art: `<rect x="10" y="14" width="28" height="12" rx="3" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(216, 14)"><rect x="0" y="0" width="170" height="28" rx="8" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.8"/><rect x="34" y="0" width="34" height="28" fill="#FFFFFF"/><rect x="102" y="0" width="34" height="28" fill="#FFFFFF"/></g>`
+        },
+        {
+          id: 'cd_donut', label: 'Donut Wreath',
+          art: `<circle cx="24" cy="24" r="10" fill="#F472B6" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="3.5" fill="#FFFFFF"/>`,
+          svg: `<g transform="translate(274, 52)"><circle cx="26" cy="26" r="22" fill="#F472B6" stroke="#3D2B24" stroke-width="3"/><circle cx="26" cy="26" r="8" fill="#FFF0F7" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        },
+        {
+          id: 'cd_plant', label: 'Cafe Plant',
+          art: `<circle cx="24" cy="20" r="8" fill="#22C55E" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(366, 152)"><path d="M 6 24 L 36 24 L 32 46 L 10 46 Z" fill="#FB923C" stroke="#3D2B24" stroke-width="2.6"/><circle cx="21" cy="14" r="13" fill="#22C55E" stroke="#3D2B24" stroke-width="2.6"/></g>`
+        },
+        {
+          id: 'cd_lights', label: 'Warm Lights',
+          art: `<circle cx="24" cy="22" r="7" fill="#FEF08A" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(140, 12)"><path d="M 0 6 Q 115 24 230 6" fill="none" stroke="#3D2B24" stroke-width="2.2"/><circle cx="55" cy="14" r="6" fill="#FEF08A" stroke="#3D2B24" stroke-width="1.8"/><circle cx="115" cy="16" r="6" fill="#FEF08A" stroke="#3D2B24" stroke-width="1.8"/><circle cx="175" cy="14" r="6" fill="#FEF08A" stroke="#3D2B24" stroke-width="1.8"/></g>`
+        },
+        {
+          id: 'cd_cupcake', label: 'Cupcake Art',
+          art: `<circle cx="24" cy="20" r="8" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(334, 52)"><rect x="8" y="24" width="32" height="18" rx="4" fill="#FDE047" stroke="#3D2B24" stroke-width="2.4"/><circle cx="24" cy="18" r="14" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.4"/></g>`
+        },
+        {
+          id: 'cd_bell', label: 'Service Bell',
+          art: `<path d="M 14 28 A 10 10 0 0 1 34 28 Z" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`,
+          svg: `<g transform="translate(228, 102)"><path d="M 4 20 A 14 14 0 0 1 32 20 Z" fill="#FDE047" stroke="#3D2B24" stroke-width="2.2"/></g>`
+        }
+      ]
+    }
+      ,
+    {
+      id: 'boutique',
+      name: 'Boutique',
+      tabArt: `<path d="M 16 14 L 32 14 L 36 34 L 12 34 Z" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="11" r="4" fill="#FDE047"/>`,
+      defaultWall: '#FFF0F7',
+      defaultFloor: '#FBCFE8',
+      archSvg: `<g transform="translate(30, 24)">
+                  <rect x="0" y="0" width="92" height="96" rx="46" fill="#FFFFFF" stroke="#3D2B24" stroke-width="3.2"/>
+                  <rect x="8" y="8" width="76" height="80" rx="38" fill="#E0F2FE"/>
+                </g>`,
+      mainTitle: '👗 Dress Racks (8)',
+      sideTitle: '👠 Shoe & Bag Shelf (8)',
+      decorTitle: '👑 Crown & Mirror (8)',
+      surfaces: [
+        { id: 'bs_paris', label: 'Paris Pink', pat: 'stripes', rugShape: 'star', wall: '#FFF0F7', dot: '#FF8FAB', floor: '#FDE68A', rug: '#FF8FAB', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFF0F7" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#FF8FAB"/>` },
+        { id: 'bs_gold', label: 'Royal Gold', pat: 'diamonds', rugShape: 'rect', wall: '#FEF9C3', dot: '#FACC15', floor: '#FDBA74', rug: '#FDE047', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FEF9C3" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#FACC15"/>` },
+        { id: 'bs_lilac', label: 'Velvet Lilac', pat: 'dots', rugShape: 'star', wall: '#F3E8FF', dot: '#C084FC', floor: '#FDE68A', rug: '#C084FC', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#F3E8FF" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#C084FC"/>` },
+        { id: 'bs_mint', label: 'Tiffany Mint', pat: 'grid', rugShape: 'rect', wall: '#ECFDF5', dot: '#34D399', floor: '#FEF3C7', rug: '#34D399', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#ECFDF5" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#34D399"/>` },
+        { id: 'bs_sky', label: 'Cinderella Sky', pat: 'diamonds', rugShape: 'star', wall: '#E0F2FE', dot: '#38BDF8', floor: '#FEF3C7', rug: '#60A5FA', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#E0F2FE" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#38BDF8"/>` },
+        { id: 'bs_peach', label: 'Rose Silk', pat: 'stripes', rugShape: 'rect', wall: '#FFEDD5', dot: '#FB923C', floor: '#FDBA74', rug: '#FB7185', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFEDD5" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#FB923C"/>` },
+        { id: 'bs_pearl', label: 'Pearl White', pat: 'dots', rugShape: 'star', wall: '#FFFDF7', dot: '#F472B6', floor: '#FBCFE8', rug: '#FF6FA5', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFFDF7" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#F472B6"/>` },
+        { id: 'bs_coral', label: 'Coral Runway', pat: 'grid', rugShape: 'rect', wall: '#FFE4E6', dot: '#FB7185', floor: '#FDE68A', rug: '#FACC15', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFE4E6" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#FB7185"/>` }
+      ],
+      main: [
+        { id: 'btq_rack1', label: 'Princess Rack', art: `<line x1="10" y1="14" x2="38" y2="14" stroke="#3D2B24" stroke-width="2.5"/><polygon points="18,14 24,32 12,32" fill="#FF8FAB"/>`, svg: `<g transform="translate(226, 102)"><line x1="0" y1="10" x2="148" y2="10" stroke="#3D2B24" stroke-width="4"/><line x1="12" y1="10" x2="12" y2="98" stroke="#3D2B24" stroke-width="3.5"/><line x1="136" y1="10" x2="136" y2="98" stroke="#3D2B24" stroke-width="3.5"/><polygon points="42,12 62,64 22,64" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.5"/><polygon points="82,12 102,64 62,64" fill="#60A5FA" stroke="#3D2B24" stroke-width="2.5"/><polygon points="116,12 132,64 100,64" fill="#FDE047" stroke="#3D2B24" stroke-width="2.5"/></g>` },
+        { id: 'btq_rack2', label: 'Idol Outfits', art: `<rect x="14" y="14" width="20" height="20" rx="4" fill="#C084FC"/>`, svg: `<g transform="translate(226, 102)"><line x1="0" y1="10" x2="148" y2="10" stroke="#3D2B24" stroke-width="4"/><line x1="12" y1="10" x2="12" y2="98" stroke="#3D2B24" stroke-width="3.5"/><line x1="136" y1="10" x2="136" y2="98" stroke="#3D2B24" stroke-width="3.5"/><polygon points="46,12 64,58 28,58" fill="#C084FC" stroke="#3D2B24" stroke-width="2.5"/><polygon points="98,12 116,58 80,58" fill="#34D399" stroke="#3D2B24" stroke-width="2.5"/></g>` },
+        { id: 'btq_mirror', label: 'Runway Mirror', art: `<ellipse cx="24" cy="24" rx="10" ry="14" fill="#E0F2FE" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(252, 94)"><ellipse cx="48" cy="52" rx="34" ry="48" fill="#FDE047" stroke="#3D2B24" stroke-width="3"/><ellipse cx="48" cy="52" rx="26" ry="38" fill="#E0F2FE" stroke="#3D2B24" stroke-width="2.2"/></g>` },
+        { id: 'btq_sofa', label: 'Velvet Pouf', art: `<ellipse cx="24" cy="26" rx="14" ry="8" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(234, 154)"><ellipse cx="66" cy="24" rx="62" ry="22" fill="#FF8FAB" stroke="#3D2B24" stroke-width="3"/><ellipse cx="66" cy="18" rx="44" ry="12" fill="#FBCFE8"/></g>` },
+        { id: 'btq_wardrobe', label: 'Glass Closet', art: `<rect x="12" y="11" width="24" height="26" rx="4" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(236, 98)"><rect x="0" y="0" width="124" height="102" rx="10" fill="#FBCFE8" stroke="#3D2B24" stroke-width="3"/><rect x="12" y="10" width="44" height="80" rx="5" fill="#E0F2FE"/><rect x="68" y="10" width="44" height="80" rx="5" fill="#E0F2FE"/></g>` },
+        { id: 'btq_podium', label: 'Star Podium', art: `<rect x="11" y="22" width="26" height="12" rx="4" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(230, 152)"><rect x="6" y="16" width="132" height="30" rx="10" fill="#FDE047" stroke="#3D2B24" stroke-width="3"/></g>` },
+        { id: 'btq_booth', label: 'Fitting Curtain', art: `<rect x="12" y="11" width="24" height="26" rx="4" fill="#FF6FA5" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(242, 94)"><rect x="0" y="0" width="110" height="106" rx="8" fill="#FF8FAB" stroke="#3D2B24" stroke-width="3"/><line x1="55" y1="0" x2="55" y2="106" stroke="#3D2B24" stroke-width="2.5"/></g>` },
+        { id: 'btq_island', label: 'Jewel Counter', art: `<rect x="10" y="18" width="28" height="16" rx="4" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(228, 138)"><rect x="0" y="0" width="144" height="62" rx="10" fill="#BAE6FD" stroke="#3D2B24" stroke-width="3"/><rect x="12" y="10" width="120" height="26" rx="5" fill="#FFFFFF"/></g>` }
+      ],
+      side: [
+        { id: 'btqs_shoes', label: 'Shoe Tower', art: `<rect x="13" y="12" width="22" height="24" rx="4" fill="#FEF3C7" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(134, 114)"><rect x="0" y="0" width="74" height="86" rx="8" fill="#FFFBEB" stroke="#3D2B24" stroke-width="2.8"/><line x1="0" y1="28" x2="74" y2="28" stroke="#3D2B24" stroke-width="2.4"/><line x1="0" y1="56" x2="74" y2="56" stroke="#3D2B24" stroke-width="2.4"/><circle cx="22" cy="18" r="6" fill="#FF6FA5"/><circle cx="50" cy="18" r="6" fill="#38BDF8"/><circle cx="22" cy="46" r="6" fill="#FDE047"/><circle cx="50" cy="46" r="6" fill="#C084FC"/></g>` },
+        { id: 'btqs_bags', label: 'Handbag Stand', art: `<rect x="15" y="18" width="18" height="14" rx="4" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(136, 122)"><line x1="36" y1="0" x2="36" y2="78" stroke="#3D2B24" stroke-width="3.5"/><rect x="10" y="18" width="22" height="18" rx="5" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.2"/><rect x="42" y="34" width="22" height="18" rx="5" fill="#FDE047" stroke="#3D2B24" stroke-width="2.2"/></g>` },
+        { id: 'btqs_vanity', label: 'Makeup Table', art: `<circle cx="24" cy="18" r="7" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(130, 134)"><ellipse cx="42" cy="18" rx="20" ry="18" fill="#FFFDF7" stroke="#3D2B24" stroke-width="2.8"/><rect x="6" y="38" width="72" height="12" rx="4" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.6"/><rect x="14" y="50" width="8" height="20" fill="#F472B6"/><rect x="62" y="50" width="8" height="20" fill="#F472B6"/></g>` },
+        { id: 'btqs_mannequin', label: 'Dress Form', art: `<polygon points="18,16 30,16 34,32 14,32" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(148, 122)"><line x1="24" y1="44" x2="24" y2="78" stroke="#3D2B24" stroke-width="3.5"/><polygon points="14,12 34,12 42,46 6,46" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.6"/></g>` },
+        { id: 'btqs_hatstand', label: 'Crown Stand', art: `<polygon points="14,24 24,12 34,24" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(146, 128)"><line x1="24" y1="14" x2="24" y2="72" stroke="#3D2B24" stroke-width="3.5"/><polygon points="10,16 18,4 24,12 30,4 38,16" fill="#FDE047" stroke="#3D2B24" stroke-width="2.2"/></g>` },
+        { id: 'btqs_perfume', label: 'Perfume Shelf', art: `<circle cx="24" cy="24" r="8" fill="#DDD6FE" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(136, 146)"><rect x="0" y="14" width="70" height="38" rx="8" fill="#EDE9FE" stroke="#3D2B24" stroke-width="2.6"/><circle cx="22" cy="8" r="8" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/><circle cx="48" cy="8" r="8" fill="#38BDF8" stroke="#3D2B24" stroke-width="2"/></g>` },
+        { id: 'btqs_gift', label: 'Gift Boxes', art: `<rect x="14" y="16" width="20" height="18" rx="3" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(136, 152)"><rect x="4" y="14" width="34" height="32" rx="5" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.5"/><rect x="42" y="20" width="28" height="26" rx="5" fill="#FDE047" stroke="#3D2B24" stroke-width="2.5"/></g>` },
+        { id: 'btqs_stool', label: 'Tufted Stool', art: `<ellipse cx="24" cy="24" rx="12" ry="7" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(142, 168)"><ellipse cx="32" cy="12" rx="28" ry="11" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.6"/><rect x="14" y="22" width="7" height="14" fill="#FDE047"/><rect x="43" y="22" width="7" height="14" fill="#FDE047"/></g>` }
+      ],
+      decor: [
+        { id: 'btqd_tiara', label: 'Tiara Sign', art: `<polygon points="12,28 16,14 24,22 32,14 36,28" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(264, 24)"><polygon points="10,36 16,10 34,26 48,6 62,26 80,10 86,36" fill="#FDE047" stroke="#3D2B24" stroke-width="2.8" stroke-linejoin="round"/></g>` },
+        { id: 'btqd_lights', label: 'Glam Bulbs', art: `<circle cx="24" cy="22" r="7" fill="#FEF08A" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(136, 14)"><path d="M 0 6 Q 115 24 230 6" fill="none" stroke="#3D2B24" stroke-width="2.2"/><circle cx="52" cy="14" r="6" fill="#FEF08A" stroke="#3D2B24" stroke-width="1.8"/><circle cx="115" cy="16" r="6" fill="#FEF08A" stroke="#3D2B24" stroke-width="1.8"/><circle cx="178" cy="14" r="6" fill="#FEF08A" stroke="#3D2B24" stroke-width="1.8"/></g>` },
+        { id: 'btqd_bow', label: 'Giant Bow', art: `<polygon points="24,24 12,16 12,32" fill="#FF6FA5"/><polygon points="24,24 36,16 36,32" fill="#FF6FA5"/>`, svg: `<g transform="translate(342, 34)"><polygon points="28,24 4,10 4,38" fill="#FF6FA5" stroke="#3D2B24" stroke-width="2.4"/><polygon points="28,24 52,10 52,38" fill="#FF6FA5" stroke="#3D2B24" stroke-width="2.4"/><circle cx="28" cy="24" r="7" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/></g>` },
+        { id: 'btqd_poodle', label: 'Fluffy Poodle', art: `<circle cx="24" cy="24" r="9" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(358, 198)"><circle cx="22" cy="18" r="14" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.6"/><circle cx="10" cy="12" r="6" fill="#FF8FAB"/><circle cx="34" cy="12" r="6" fill="#FF8FAB"/></g>` },
+        { id: 'btqd_plant', label: 'Rose Bush', art: `<circle cx="24" cy="20" r="8" fill="#22C55E" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(364, 150)"><path d="M 6 24 L 36 24 L 32 46 L 10 46 Z" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.5"/><circle cx="21" cy="14" r="13" fill="#22C55E" stroke="#3D2B24" stroke-width="2.5"/><circle cx="16" cy="12" r="4" fill="#FF6FA5"/><circle cx="26" cy="16" r="4" fill="#FF6FA5"/></g>` },
+        { id: 'btqd_stars', label: 'Sparkle Stars', art: `<polygon points="24,11 27,19 35,19 29,24 31,32 24,27 17,32 19,24 13,19 21,19" fill="#FDE047" stroke="#3D2B24" stroke-width="1.8"/>`, svg: `<g transform="translate(184, 44)"><polygon points="18,0 22,11 34,11 24,18 28,29 18,22 8,29 12,18 2,11 14,11" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/></g>` },
+        { id: 'btqd_bag', label: 'Shopping Bag', art: `<rect x="14" y="16" width="20" height="18" rx="3" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(36, 198)"><rect x="4" y="8" width="28" height="28" rx="4" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.4"/><path d="M 11 8 Q 18 0 25 8" fill="none" stroke="#3D2B24" stroke-width="2.2"/></g>` },
+        { id: 'btqd_heart', label: 'Neon Heart', art: `<path d="M 24 34 C 12 25, 11 15, 18 14 C 21 14, 23 16, 24 18 C 25 16, 27 14, 30 14 C 37 15, 36 25, 24 34 Z" fill="#FF6FA5" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(148, 42)"><path d="M 24 40 C 6 26, 4 10, 15 8 C 20 8, 23 11, 24 14 C 25 11, 28 8, 33 8 C 44 10, 42 26, 24 40 Z" fill="#FF6FA5" stroke="#3D2B24" stroke-width="2.6"/></g>` }
+      ]
+    },
+    {
+      id: 'studio',
+      name: 'Art Studio',
+      tabArt: `<circle cx="24" cy="24" r="11" fill="#FDE68A" stroke="#3D2B24" stroke-width="2"/><circle cx="19" cy="21" r="2.5" fill="#FF6FA5"/><circle cx="27" cy="20" r="2.5" fill="#38BDF8"/><circle cx="24" cy="28" r="2.5" fill="#34D399"/>`,
+      defaultWall: '#EFF8FF',
+      defaultFloor: '#FDE68A',
+      archSvg: `<g transform="translate(32, 26)">
+                  <rect x="0" y="0" width="90" height="92" rx="12" fill="#FEF9C3" stroke="#3D2B24" stroke-width="3.2"/>
+                  <line x1="45" y1="0" x2="45" y2="92" stroke="#3D2B24" stroke-width="2.6"/>
+                  <line x1="0" y1="46" x2="90" y2="46" stroke="#3D2B24" stroke-width="2.6"/>
+                </g>`,
+      mainTitle: '🎨 Easel & Stage (8)',
+      sideTitle: '🎹 Music & Craft (8)',
+      decorTitle: '🌈 Gallery & Awards (8)',
+      surfaces: [
+        { id: 'as_sky', label: 'Atelier Sky', pat: 'dots', rugShape: 'rect', wall: '#EFF8FF', dot: '#38BDF8', floor: '#FDE68A', rug: '#FF8FAB', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#EFF8FF" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#38BDF8"/>` },
+        { id: 'as_cream', label: 'Canvas Cream', pat: 'grid', rugShape: 'star', wall: '#FFFBEB', dot: '#FBBF24', floor: '#FDBA74', rug: '#60A5FA', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFFBEB" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#FBBF24"/>` },
+        { id: 'as_pink', label: 'Pastel Pop', pat: 'stripes', rugShape: 'rect', wall: '#FFF0F7', dot: '#FF8FAB', floor: '#FDE68A', rug: '#34D399', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFF0F7" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#FF8FAB"/>` },
+        { id: 'as_mint', label: 'Mint Studio', pat: 'diamonds', rugShape: 'star', wall: '#ECFDF5', dot: '#34D399', floor: '#FEF3C7', rug: '#FACC15', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#ECFDF5" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#34D399"/>` },
+        { id: 'as_lilac', label: 'Dream Lavender', pat: 'dots', rugShape: 'rect', wall: '#F3E8FF', dot: '#A855F7', floor: '#FDE68A', rug: '#C084FC', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#F3E8FF" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#A855F7"/>` },
+        { id: 'as_peach', label: 'Sunset Studio', pat: 'stripes', rugShape: 'star', wall: '#FFEDD5', dot: '#FB923C', floor: '#FDBA74', rug: '#FB7185', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFEDD5" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#FB923C"/>` },
+        { id: 'as_rainbow', label: 'Color Splash', pat: 'diamonds', rugShape: 'rect', wall: '#FCE7F3', dot: '#38BDF8', floor: '#FEF3C7', rug: '#FF6FA5', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FCE7F3" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#38BDF8"/>` },
+        { id: 'as_white', label: 'Gallery White', pat: 'grid', rugShape: 'star', wall: '#FFFFFF', dot: '#CBD5E1', floor: '#FDE68A', rug: '#60A5FA', art: `<rect x="10" y="10" width="28" height="28" rx="7" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#94A3B8"/>` }
+      ],
+      main: [
+        { id: 'st_easel', label: 'Giant Easel', art: `<rect x="14" y="12" width="20" height="16" rx="2" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(242, 96)"><line x1="56" y1="0" x2="18" y2="106" stroke="#D97706" stroke-width="5" stroke-linecap="round"/><line x1="56" y1="0" x2="94" y2="106" stroke="#D97706" stroke-width="5" stroke-linecap="round"/><rect x="16" y="14" width="80" height="62" rx="6" fill="#FFFFFF" stroke="#3D2B24" stroke-width="3"/><circle cx="56" cy="45" r="16" fill="#FF6FA5"/></g>` },
+        { id: 'st_piano', label: 'Grand Piano', art: `<rect x="10" y="16" width="28" height="18" rx="4" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(226, 118)"><rect x="0" y="0" width="144" height="82" rx="12" fill="#FBCFE8" stroke="#3D2B24" stroke-width="3"/><rect x="12" y="46" width="120" height="18" rx="3" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.4"/></g>` },
+        { id: 'st_craft', label: 'Craft Table', art: `<rect x="10" y="18" width="28" height="12" rx="3" fill="#FDE68A" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(226, 138)"><rect x="0" y="12" width="148" height="14" rx="5" fill="#FDE68A" stroke="#3D2B24" stroke-width="3"/><rect x="14" y="26" width="10" height="36" fill="#D97706"/><rect x="124" y="26" width="10" height="36" fill="#D97706"/><circle cx="44" cy="6" r="8" fill="#FF6FA5"/><circle cx="76" cy="6" r="8" fill="#38BDF8"/><circle cx="108" cy="6" r="8" fill="#34D399"/></g>` },
+        { id: 'st_pottery', label: 'Pottery Wheel', art: `<ellipse cx="24" cy="24" rx="12" ry="6" fill="#FDBA74" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(242, 136)"><ellipse cx="56" cy="36" rx="46" ry="14" fill="#94A3B8" stroke="#3D2B24" stroke-width="2.8"/><path d="M 38 34 Q 32 14 44 6 L 68 6 Q 80 14 74 34 Z" fill="#FB923C" stroke="#3D2B24" stroke-width="2.6"/></g>` },
+        { id: 'st_harp', label: 'Golden Harp', art: `<path d="M 16 34 L 16 12 Q 34 14 32 34 Z" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(254, 96)"><path d="M 18 104 L 18 10 Q 78 16 72 104 Z" fill="#FDE047" stroke="#3D2B24" stroke-width="3"/><line x1="34" y1="22" x2="34" y2="100" stroke="#FFFFFF" stroke-width="2"/><line x1="48" y1="28" x2="48" y2="100" stroke="#FFFFFF" stroke-width="2"/></g>` },
+        { id: 'st_sewing', label: 'Sewing Desk', art: `<rect x="12" y="16" width="24" height="16" rx="4" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(228, 134)"><rect x="0" y="24" width="144" height="42" rx="8" fill="#BAE6FD" stroke="#3D2B24" stroke-width="3"/><rect x="44" y="4" width="54" height="20" rx="6" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.5"/></g>` },
+        { id: 'st_drum', label: 'Star Drumset', art: `<circle cx="24" cy="24" r="10" fill="#FF6FA5" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(236, 128)"><circle cx="62" cy="44" r="28" fill="#FF6FA5" stroke="#3D2B24" stroke-width="3"/><circle cx="62" cy="44" r="16" fill="#FFFBEB"/><circle cx="24" cy="26" r="14" fill="#FDE047" stroke="#3D2B24" stroke-width="2.4"/><circle cx="100" cy="26" r="14" fill="#38BDF8" stroke="#3D2B24" stroke-width="2.4"/></g>` },
+        { id: 'st_books', label: 'Art Library', art: `<rect x="12" y="12" width="24" height="24" rx="4" fill="#DDD6FE" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(236, 102)"><rect x="0" y="0" width="124" height="98" rx="8" fill="#EDE9FE" stroke="#3D2B24" stroke-width="3"/><line x1="0" y1="32" x2="124" y2="32" stroke="#3D2B24" stroke-width="2.6"/><line x1="0" y1="64" x2="124" y2="64" stroke="#3D2B24" stroke-width="2.6"/></g>` }
+      ],
+      side: [
+        { id: 'sts_shelf', label: 'Paint Shelf', art: `<rect x="13" y="12" width="22" height="24" rx="4" fill="#FEF3C7" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(134, 114)"><rect x="0" y="0" width="74" height="86" rx="8" fill="#FEF3C7" stroke="#3D2B24" stroke-width="2.8"/><circle cx="20" cy="18" r="6" fill="#FF6FA5"/><circle cx="38" cy="18" r="6" fill="#FDE047"/><circle cx="56" cy="18" r="6" fill="#38BDF8"/></g>` },
+        { id: 'sts_guitar', label: 'Pink Guitar', art: `<circle cx="24" cy="28" r="7" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/><line x1="24" y1="10" x2="24" y2="22" stroke="#3D2B24" stroke-width="3"/>`, svg: `<g transform="translate(148, 118)"><line x1="24" y1="0" x2="24" y2="48" stroke="#D97706" stroke-width="5"/><circle cx="24" cy="62" r="18" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.8"/><circle cx="24" cy="62" r="6" fill="#FFFBEB"/></g>` },
+        { id: 'sts_stool', label: 'Swivel Stool', art: `<ellipse cx="24" cy="20" rx="12" ry="6" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(142, 156)"><ellipse cx="32" cy="10" rx="26" ry="9" fill="#FDE047" stroke="#3D2B24" stroke-width="2.6"/><rect x="28" y="19" width="8" height="24" fill="#3D2B24"/></g>` },
+        { id: 'sts_cart', label: 'Crayon Cart', art: `<rect x="12" y="16" width="24" height="16" rx="4" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(136, 148)"><rect x="0" y="8" width="68" height="12" rx="4" fill="#BAE6FD" stroke="#3D2B24" stroke-width="2.6"/><rect x="0" y="28" width="68" height="12" rx="4" fill="#FBCFE8" stroke="#3D2B24" stroke-width="2.6"/></g>` },
+        { id: 'sts_mic', label: 'Star Mic Stand', art: `<circle cx="24" cy="16" r="5" fill="#FDE047"/><line x1="24" y1="21" x2="24" y2="36" stroke="#3D2B24" stroke-width="2.5"/>`, svg: `<g transform="translate(154, 118)"><line x1="18" y1="16" x2="18" y2="80" stroke="#3D2B24" stroke-width="3.5"/><circle cx="18" cy="12" r="9" fill="#FDE047" stroke="#3D2B24" stroke-width="2.4"/></g>` },
+        { id: 'sts_globe', label: 'World Globe', art: `<circle cx="24" cy="22" r="9" fill="#38BDF8" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(142, 138)"><circle cx="30" cy="24" r="20" fill="#38BDF8" stroke="#3D2B24" stroke-width="2.8"/><circle cx="24" cy="20" r="7" fill="#4ADE80"/><rect x="22" y="44" width="16" height="16" fill="#FDE047" stroke="#3D2B24" stroke-width="2.2"/></g>` },
+        { id: 'sts_board', label: 'Pin Board', art: `<rect x="12" y="14" width="24" height="18" rx="3" fill="#FDBA74" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(134, 126)"><rect x="0" y="0" width="74" height="54" rx="8" fill="#FED7AA" stroke="#3D2B24" stroke-width="2.8"/><rect x="10" y="10" width="22" height="18" fill="#FFFFFF"/><rect x="40" y="14" width="22" height="18" fill="#FBCFE8"/></g>` },
+        { id: 'sts_camera', label: 'Photo Tripod', art: `<rect x="14" y="14" width="20" height="14" rx="3" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(144, 128)"><line x1="28" y1="24" x2="10" y2="72" stroke="#3D2B24" stroke-width="3"/><line x1="28" y1="24" x2="46" y2="72" stroke="#3D2B24" stroke-width="3"/><rect x="10" y="4" width="36" height="24" rx="6" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.6"/><circle cx="28" cy="16" r="7" fill="#BAE6FD"/></g>` }
+      ],
+      decor: [
+        { id: 'std_palette', label: 'Rainbow Art', art: `<rect x="11" y="13" width="26" height="22" rx="4" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.2"/>`, svg: `<g transform="translate(254, 28)"><rect x="0" y="0" width="92" height="56" rx="8" fill="#FFFFFF" stroke="#3D2B24" stroke-width="3"/><path d="M 16 44 A 30 30 0 0 1 76 44" fill="none" stroke="#FF6FA5" stroke-width="6"/><path d="M 24 44 A 22 22 0 0 1 68 44" fill="none" stroke="#FDE047" stroke-width="6"/><path d="M 32 44 A 14 14 0 0 1 60 44" fill="none" stroke="#38BDF8" stroke-width="6"/></g>` },
+        { id: 'std_notes', label: 'Music Notes', art: `<circle cx="20" cy="28" r="5" fill="#FF6FA5"/><line x1="24" y1="14" x2="24" y2="28" stroke="#3D2B24" stroke-width="2.5"/>`, svg: `<g transform="translate(160, 26)"><circle cx="14" cy="32" r="7" fill="#FF6FA5" stroke="#3D2B24" stroke-width="2"/><line x1="20" y1="8" x2="20" y2="32" stroke="#3D2B24" stroke-width="3"/><circle cx="48" cy="24" r="7" fill="#38BDF8" stroke="#3D2B24" stroke-width="2"/><line x1="54" y1="2" x2="54" y2="24" stroke="#3D2B24" stroke-width="3"/></g>` },
+        { id: 'std_trophy', label: 'Gold Trophy', art: `<polygon points="16,14 32,14 28,28 20,28" fill="#FDE047" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(356, 40)"><polygon points="8,6 36,6 30,28 14,28" fill="#FDE047" stroke="#3D2B24" stroke-width="2.5"/><rect x="14" y="28" width="16" height="10" fill="#D97706"/></g>` },
+        { id: 'std_plant', label: 'Studio Monstera', art: `<circle cx="24" cy="20" r="8" fill="#22C55E" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(364, 150)"><path d="M 6 24 L 36 24 L 32 46 L 10 46 Z" fill="#FB923C" stroke="#3D2B24" stroke-width="2.5"/><circle cx="21" cy="14" r="13" fill="#22C55E" stroke="#3D2B24" stroke-width="2.5"/></g>` },
+        { id: 'std_flags', label: 'Art Bunting', art: `<polygon points="15,21 21,21 18,31" fill="#FF8FAB"/><polygon points="27,21 33,21 30,31" fill="#FDE047"/>`, svg: `<g transform="translate(132, 16)"><path d="M 0 6 Q 110 28 220 6" fill="none" stroke="#3D2B24" stroke-width="2.4"/><polygon points="24,11 40,13 32,28" fill="#FF8FAB" stroke="#3D2B24" stroke-width="2.2"/><polygon points="78,17 94,18 86,33" fill="#FDE047" stroke="#3D2B24" stroke-width="2.2"/><polygon points="134,18 150,17 142,32" fill="#38BDF8" stroke="#3D2B24" stroke-width="2.2"/></g>` },
+        { id: 'std_cat', label: 'Artist Kitty', art: `<circle cx="24" cy="25" r="9" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(36, 198)"><circle cx="20" cy="18" r="14" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.5"/><polygon points="8,10 6,0 16,7" fill="#FF8FAB"/><polygon points="32,10 34,0 24,7" fill="#FF8FAB"/></g>` },
+        { id: 'std_palette_wall', label: 'Paint Palette', art: `<circle cx="24" cy="24" r="10" fill="#FDE68A" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(148, 52)"><circle cx="22" cy="22" r="18" fill="#FDE68A" stroke="#3D2B24" stroke-width="2.5"/><circle cx="15" cy="16" r="4" fill="#FF6FA5"/><circle cx="27" cy="16" r="4" fill="#38BDF8"/><circle cx="22" cy="28" r="4" fill="#34D399"/></g>` },
+        { id: 'std_lamp', label: 'Cloud Light', art: `<ellipse cx="24" cy="24" rx="12" ry="7" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2"/>`, svg: `<g transform="translate(200, 12)"><ellipse cx="24" cy="16" rx="22" ry="12" fill="#FFFFFF" stroke="#3D2B24" stroke-width="2.4"/></g>` }
+      ]
+    }
+
+  ];
+
+  let currentRoom = roomTypes[0];
+  const roomSelections = {};
+  roomTypes.forEach(r => {
+    roomSelections[r.id] = { surface: null, main: null, side: null, decor: [] };
+  });
+
+  function makeMiniSvg(artMarkup, cls = 'swatch-art') {
+    return `<svg class="${cls}" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">${artMarkup}</svg>`;
+  }
+
+  let audioCtx = null;
+  function getAudioCtx() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+  }
+
+  function playDecorSound(step = 1) {
+    try {
+      const ctx = getAudioCtx();
+      const notes = [587.33, 739.99, 880.00, 1174.66];
+      const f = notes[(step - 1) % notes.length];
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(f, ctx.currentTime);
+      gain.gain.setValueAtTime(0.18, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.22);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.23);
+    } catch (e) {}
+  }
+
+  function renderRoomTabs() {
+    const tabs = document.getElementById('room-tabs');
+    tabs.innerHTML = '';
+    roomTypes.forEach(room => {
+      const btn = document.createElement('button');
+      btn.className = 'room-tab-btn' + (room.id === currentRoom.id ? ' active' : '');
+      const sObj = roomSelections[room.id];
+      const selCount = [sObj.surface, sObj.main, sObj.side].filter(Boolean).length + (Array.isArray(sObj.decor) ? sObj.decor.length : 0);
+      const badge = selCount > 0 ? `(${selCount})` : '';
+      btn.innerHTML = `${makeMiniSvg(room.tabArt, 'room-tab-art')}<span class="room-tab-name">${room.name}${badge}</span>`;
+      btn.addEventListener('click', () => {
+        currentRoom = room;
+        playDecorSound(1);
+        updateRoomUI(`"Welcome to Arin's ${room.name}! Decorate it your way!" 🏡`);
+      });
+      tabs.appendChild(btn);
+    });
+  }
+
+  function renderPalettes() {
+    document.getElementById('main-cat-title').textContent = currentRoom.mainTitle;
+    document.getElementById('side-cat-title').textContent = currentRoom.sideTitle;
+    document.getElementById('decor-cat-title').textContent = currentRoom.decorTitle;
+
+    const sel = roomSelections[currentRoom.id];
+    const groups = [
+      ['palette-surface', 'surface', currentRoom.surfaces],
+      ['palette-main', 'main', currentRoom.main],
+      ['palette-side', 'side', currentRoom.side],
+      ['palette-decor', 'decor', currentRoom.decor]
+    ];
+
+    groups.forEach(([elId, cat, list]) => {
+      const box = document.getElementById(elId);
+      box.innerHTML = '';
+      list.forEach(item => {
+        const btn = document.createElement('button');
+        const isAct = (cat === 'decor') ? (Array.isArray(sel.decor) && sel.decor.includes(item.id)) : (sel[cat] === item.id);
+        btn.className = 'swatch-btn' + (isAct ? ' active' : '');
+        btn.innerHTML = `${makeMiniSvg(item.art, 'swatch-art')}<span class="swatch-label">${item.label}</span>`;
+        btn.addEventListener('click', () => {
+          if (cat === 'decor') {
+            if (!Array.isArray(sel.decor)) sel.decor = sel.decor ? [sel.decor] : [];
+            if (sel.decor.includes(item.id)) {
+              sel.decor = sel.decor.filter(x => x !== item.id);
+              updateRoomUI(`"Removed ${item.label} from ${currentRoom.name}!" 🧹`);
+            } else {
+              if (sel.decor.length >= 4) sel.decor.shift();
+              sel.decor.push(item.id);
+              playDecorSound(4);
+              updateRoomUI(`"Layered ${item.label} (${sel.decor.length}/4 decor)!" ✨`);
+            }
+          } else {
+            if (sel[cat] === item.id) {
+              sel[cat] = null;
+              updateRoomUI(`"Removed ${item.label} from ${currentRoom.name}!" 🧹`);
+            } else {
+              sel[cat] = item.id;
+              const count = [sel.surface, sel.main, sel.side, (sel.decor && sel.decor.length > 0)].filter(Boolean).length;
+              playDecorSound(count);
+              updateRoomUI(`"Styled ${currentRoom.name} with ${item.label}!" ✨`);
+            }
+          }
+        });
+        box.appendChild(btn);
+      });
+    });
+  }
+
+  function buildWallPattern(surfObj) {
+    if (!surfObj) return '';
+    let p = '';
+    const c = surfObj.dot || '#FF8FAB';
+    const pat = surfObj.pat || 'dots';
+    if (pat === 'stripes') {
+      for (let x = 18; x < 415; x += 28) {
+        p += `<rect x="${x}" y="0" width="10" height="190" fill="${c}" opacity="0.35"/>`;
+      }
+    } else if (pat === 'grid') {
+      for (let x = 24; x < 415; x += 32) p += `<line x1="${x}" y1="0" x2="${x}" y2="190" stroke="${c}" stroke-width="2" opacity="0.45"/>`;
+      for (let y = 24; y < 188; y += 32) p += `<line x1="0" y1="${y}" x2="420" y2="${y}" stroke="${c}" stroke-width="2" opacity="0.45"/>`;
+    } else if (pat === 'diamonds') {
+      for (let x = 145; x < 410; x += 38) {
+        for (let y = 24; y < 180; y += 38) {
+          p += `<polygon points="${x},${y-6} ${x+6},${y} ${x},${y+6} ${x-6},${y}" fill="${c}"/>`;
+        }
+      }
+    } else {
+      for (let x = 148; x < 410; x += 36) {
+        for (let y = 26; y < 180; y += 36) {
+          p += `<circle cx="${x}" cy="${y}" r="3.5" fill="${c}"/>`;
+        }
+      }
+    }
+    return p;
+  }
+
+  function updateRoomUI(speechText) {
+    renderRoomTabs();
+    renderPalettes();
+
+    const sel = roomSelections[currentRoom.id];
+    const surfObj = currentRoom.surfaces.find(x => x.id === sel.surface) || null;
+    const mainObj = currentRoom.main.find(x => x.id === sel.main) || null;
+    const sideObj = currentRoom.side.find(x => x.id === sel.side) || null;
+    const decorIds = Array.isArray(sel.decor) ? sel.decor : (sel.decor ? [sel.decor] : []);
+    const decorObjs = decorIds.map(id => currentRoom.decor.find(x => x.id === id)).filter(Boolean);
+
+    document.getElementById('room-wall').setAttribute('fill', surfObj ? surfObj.wall : currentRoom.defaultWall);
+    document.getElementById('wall-pattern-layer').innerHTML = buildWallPattern(surfObj);
+    document.getElementById('room-floor').setAttribute('fill', surfObj ? surfObj.floor : currentRoom.defaultFloor);
+
+    document.getElementById('room-rug-layer').innerHTML = surfObj
+      ? (surfObj.rugShape === 'star'
+          ? `<ellipse cx="215" cy="236" rx="116" ry="25" fill="${surfObj.rug}" stroke="#3D2B24" stroke-width="2.8"/><ellipse cx="215" cy="236" rx="96" ry="18" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="6 4"/>`
+          : surfObj.rugShape === 'rect'
+          ? `<rect x="108" y="214" width="214" height="44" rx="12" fill="${surfObj.rug}" stroke="#3D2B24" stroke-width="2.8"/><rect x="116" y="220" width="198" height="32" rx="8" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="7 5"/>`
+          : `<ellipse cx="215" cy="236" rx="112" ry="24" fill="${surfObj.rug}" stroke="#3D2B24" stroke-width="2.8"/>`)
+      : '';
+
+    document.getElementById('room-arch-layer').innerHTML = currentRoom.archSvg;
+    document.getElementById('room-furniture-layer').innerHTML = mainObj ? mainObj.svg : '';
+    document.getElementById('room-side-layer').innerHTML = sideObj ? sideObj.svg : '';
+    document.getElementById('room-decor-layer').innerHTML = decorObjs.map(d => d.svg).join('');
+
+    const parts = [surfObj?.label, mainObj?.label, sideObj?.label, ...decorObjs.map(d => d.label)].filter(Boolean);
+    document.getElementById('room-summary-label').textContent =
+      parts.length ? `${currentRoom.name} · ${parts.slice(0, 4).join(' · ')}` : `${currentRoom.name} · Ready to Style`;
+
+    const doneCount = [surfObj, mainObj, sideObj, decorObjs.length > 0].filter(Boolean).length;
+    const pct = Math.round((doneCount / 4) * 100);
+    document.getElementById('room-fill').style.width = pct + '%';
+    document.getElementById('room-style-pill').textContent = `${doneCount} / 4 Styled`;
+
+    if (speechText) {
+      const bubble = document.getElementById('speech-bubble');
+      bubble.textContent = speechText;
+      bubble.classList.remove('pop');
+      void bubble.offsetWidth;
+      bubble.classList.add('pop');
+    }
+
+    const svg = document.getElementById('room-svg');
+    svg.classList.remove('bounce');
+    void svg.offsetWidth;
+    svg.classList.add('bounce');
+  }
+
+  document.getElementById('magic-room-btn').addEventListener('click', () => {
+    const sel = roomSelections[currentRoom.id];
+    sel.surface = currentRoom.surfaces[Math.floor(Math.random() * currentRoom.surfaces.length)].id;
+    sel.main = currentRoom.main[Math.floor(Math.random() * currentRoom.main.length)].id;
+    sel.side = currentRoom.side[Math.floor(Math.random() * currentRoom.side.length)].id;
+    const shuffled = [...currentRoom.decor].sort(() => Math.random() - 0.5);
+    sel.decor = shuffled.slice(0, 3).map(x => x.id);
+    playDecorSound(4);
+    launchGlitterFireworks();
+    updateRoomUI(`"Ta-da! Full ${currentRoom.name} makeover with 3 layered decors!" 🪄🏡`);
+  });
+
+  document.getElementById('clear-room-btn').addEventListener('click', () => {
+    roomSelections[currentRoom.id] = { surface: null, main: null, side: null, decor: [] };
+    updateRoomUI(`"${currentRoom.name} cleared! Start fresh!" 🧹`);
+  });
+
+  document.getElementById('room-tap').addEventListener('click', () => {
+    playDecorSound(2);
+    const svg = document.getElementById('room-svg');
+    svg.classList.remove('bounce');
+    void svg.offsetWidth;
+    svg.classList.add('bounce');
+  });
+
+  document.getElementById('save-html-btn').addEventListener('click', () => {
+    try {
+      const blob = new Blob([document.documentElement.outerHTML], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'arin_dream_house_mega256.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1500);
+    } catch (e) {}
+  });
+
+  const canvas = document.getElementById('fx-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let animId = null;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  function createGlitterBurst(x, y) {
+    const colors = ['#FF6FA5', '#FDE047', '#6EE7B7', '#BAE6FD', '#C084FC', '#FB923C'];
+    for (let i = 0; i < 46; i++) {
+      const angle = (Math.PI * 2 * i) / 46 + (Math.random() - 0.5) * 0.25;
+      const speed = 2.4 + Math.random() * 5.6;
+      particles.push({
+        x, y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        alpha: 1,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        size: 4.5 + Math.random() * 4.5
+      });
+    }
+  }
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.07;
+      p.alpha -= 0.013;
+      ctx.globalAlpha = Math.max(0, p.alpha);
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    particles = particles.filter(p => p.alpha > 0);
+    if (particles.length > 0) {
+      animId = requestAnimationFrame(animateParticles);
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      animId = null;
+    }
+  }
+
+  function launchGlitterFireworks() {
+    const w = canvas.width;
+    const h = canvas.height;
+    createGlitterBurst(w * 0.25, h * 0.28);
+    setTimeout(() => createGlitterBurst(w * 0.75, h * 0.25), 200);
+    setTimeout(() => createGlitterBurst(w * 0.50, h * 0.20), 400);
+    setTimeout(() => createGlitterBurst(w * 0.34, h * 0.45), 620);
+    setTimeout(() => createGlitterBurst(w * 0.66, h * 0.43), 820);
+    if (!animId) animateParticles();
+  }
+
+  updateRoomUI();
+</script>
+</body>
+</html>
